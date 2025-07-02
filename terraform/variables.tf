@@ -26,9 +26,14 @@ variable "subnets" {
 }
 
 variable "igw" {
-  type = map(object({
+  type = object({
     vpc_id = string
-    tags = map(string)
-  }))
+    tags   = map(string)
+  })
 }
-
+variable "nat" {
+  type = object({
+    private_subnet = string
+    tags = map(string) 
+  }) 
+}

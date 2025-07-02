@@ -15,8 +15,15 @@ module "subnets" {
 }
 
 module "igw" {
-    source = "./modules/networking/igw"
-    for_each = var.igw
-    tags = each.value.tags
-    vpc_id = module.vpc[each.value.vpc_id].id
+  source  = "./modules/networking/igw"
+  vpc_id  = module.vpc[var.igw.vpc_id].id
+  tags    = var.igw.tags
+  depends_on = [ module.subnets ]
+}
+
+module "nat" {
+    source = "./modules/networking/nat"
+    private_subnet = module.subnets[var.nat.private_subnet].id
+    tags = var.nat.tags
+    depends_on = [ module.subnets ]
 }
