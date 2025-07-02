@@ -17,6 +17,6 @@ module "subnets" {
 module "igw" {
     source = "./modules/networking/igw"
     for_each = var.igw
-    name = each.key
+    tags = each.value.tags
     vpc_id = module.vpc[each.value.vpc_id].id
 }
