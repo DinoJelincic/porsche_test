@@ -19,3 +19,6 @@ variable "nat_gateway_id" {
 variable "tags" {
   type = map(string)
 }
+variable "route" {
+  
+}
