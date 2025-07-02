@@ -14,7 +14,7 @@ module "subnets" {
   depends_on = [module.vpc]
 }
 resource "aws_internet_gateway" "igw" {
-  vpc_id = module.vpc.vpc_id
+  vpc_id = module.vpc.id
   tags = var.igw_tags
 
 }
@@ -26,7 +26,7 @@ resource "aws_nat_gateway" "nat" {
   for_each = var.nat
   allocation_id = aws_eip.nat_ip.id
   subnet_id     = module.subnets[each.value.private_subnet].id
-  tags = var.nat.tags
+  tags = each.value
 }
 
 
