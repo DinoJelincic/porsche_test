@@ -2,13 +2,13 @@ variable "vpc_id" {
 
 }
 variable "settings" {
-  
+
 }
 variable "gateway_id" {
-  
+
 }
 variable "nat_gateway_id" {
-  
+
 }
 # variable "cidr_block" {
 #   type = string
@@ -28,5 +28,5 @@ variable "nat_gateway_id" {
 #   type = map(string)
 # }
 # variable "route" {
-  
+
 # }

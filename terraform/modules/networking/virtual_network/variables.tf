@@ -1,6 +1,6 @@
 variable "name" {
-  
+
 }
 variable "settings" {
-  
+
 }

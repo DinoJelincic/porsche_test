@@ -18,7 +18,7 @@ variable "subnets" {
   description = "Subnet configuration"
   type = map(object({
     vpc_id                  = string
-    cidr_block = string
+    cidr_block              = string
     map_public_ip_on_launch = bool
     tags                    = map(string)
   }))
@@ -38,26 +38,45 @@ variable "nat" {
   }))
 }
 
-
 variable "route_tables" {
   description = "Route table configuration"
   type = map(object({
-    vpc_id          = string
-    gateway_id      = string
-    nat_gateway_id  = string
+    vpc_id         = string
+    gateway_id     = string
+    nat_gateway_id = string
     route = list(object({
-      cidr_block      = string
-      gateway_id      = optional(string)
-      nat_gateway_id  = optional(string)
+      cidr_block     = string
+      gateway_id     = optional(string)
+      nat_gateway_id = optional(string)
     }))
     tags = map(string)
   }))
 }
 
-
 variable "rt_association" {
   type = map(object({
-    subnet_name       = string
-    route_table_name  = string
+    subnet_name      = string
+    route_table_name = string
   }))
+}
+
+variable "sg" {
+  type = map(object({
+    name = string
+    vpc_id = string
+    ingress = list(object({
+      from_port = number
+      to_port = number
+      protocol = string
+      cidr_block = list(string)
+    }))
+    egress = list(object({
+      from_port = number
+      to_port = number
+      protocol = string
+      cidr_block = list(string)
+    }))
+    tags = map(string)
+  }))
+  
 }

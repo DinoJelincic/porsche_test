@@ -1,29 +1,29 @@
 region = "eu-central-1"
 vpc = {
   "porsche_vpc" = {
-    cidr_block = "10.10.0.0/16"
-    instance_tenancy = "default"
+    cidr_block           = "10.10.0.0/16"
+    instance_tenancy     = "default"
     enable_dns_hostnames = true
-    enable_dns_support = true
+    enable_dns_support   = true
     tags = {
-        Name = "porsche_vpc"
+      Name = "porsche_vpc"
     }
   }
 }
 
 subnets = {
   "public_subnet" = {
-    vpc_id = "porsche_vpc"
+    vpc_id                  = "porsche_vpc"
     map_public_ip_on_launch = true
-    cidr_block = "10.10.1.0/24"
+    cidr_block              = "10.10.1.0/24"
     tags = {
       Name = "public_subnet"
     }
   }
   private_subnet = {
-    vpc_id = "porsche_vpc"
+    vpc_id                  = "porsche_vpc"
     map_public_ip_on_launch = false
-    cidr_block = "10.10.100.0/24"
+    cidr_block              = "10.10.100.0/24"
     tags = {
       Name = "private_subnet"
     }
@@ -48,7 +48,6 @@ nat = {
   }
 }
 
-
 route_tables = {
   "public" = {
     vpc_id         = "porsche_vpc"
@@ -70,7 +69,7 @@ route_tables = {
     nat_gateway_id = "porsche_nat"
     route = [
       {
-        cidr_block = "0.0.0.0/0"
+        cidr_block     = "0.0.0.0/0"
         nat_gateway_id = "porsche_nat"
       }
     ]
@@ -78,17 +77,34 @@ route_tables = {
       Name = "private_route_table"
     }
   }
-  
+
 }
 
 rt_association = {
   "public" = {
-    subnet_name = "public_subnet"
+    subnet_name      = "public_subnet"
     route_table_name = "public"
   }
   "private" = {
-    subnet_name = "private_subnet"
+    subnet_name      = "private_subnet"
     route_table_name = "private"
   }
 }
 
+sg = {
+  ec2_sg = {
+    vpc_id = "porsche_vpc"
+    ingress = [{
+      cidr_block = [ "0.0.0.0/0" ]
+      from_port = 80
+      protocol = "tcp"
+      to_port = 80
+    }]
+    egress = [{
+      cidr_block = [ "0.0.0.0/0" ]
+      from_port = 0
+      protocol = "-1"
+      to_port = 0
+    }]
+  }
+}
