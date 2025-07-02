@@ -31,12 +31,12 @@ variable "igw" {
   }))
 }
 
-# variable "nat" {
-#   type = map(object({
-#     private_subnet = string
-#     tags           = map(string)
-#   }))
-# }
+variable "nat" {
+  type = map(object({
+    private_subnet = string
+    tags           = map(string)
+  }))
+}
 
 
 # variable "route_tables" {

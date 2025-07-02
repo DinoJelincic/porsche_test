@@ -39,14 +39,14 @@ igw = {
   }
 }
 
-# nat = {
-#   "porsche_nat" = {
-#     private_subnet = "private_subnet"
-#     tags = {
-#       Name = "porsche_nat"
-#     }
-#   }
-# }
+nat = {
+  "porsche_nat" = {
+    private_subnet = "private_subnet"
+    tags = {
+      Name = "porsche_nat"
+    }
+  }
+}
 
 
 # route_tables = {

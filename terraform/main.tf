@@ -21,12 +21,12 @@ module "igw" {
   tags   = each.value.tags
 }
 
-# module "nat" {
-#   source  = "./modules/networking/nat"
-#   for_each = var.nat
-#   private_subnet = module.subnets[each.value.private_subnet].id
-#   tags           = each.value.tags
-# }
+module "nat" {
+  source  = "./modules/networking/nat"
+  for_each = var.nat
+  private_subnet = module.subnets[each.value.private_subnet].id
+  tags           = each.value.tags
+}
 
 
 # module "route_table" {
