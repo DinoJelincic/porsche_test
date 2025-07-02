@@ -32,7 +32,7 @@ subnets = {
 
 igw = {
   "porsche_igw" = {
-    vpc_id = "porsche_pvc" 
+    vpc_id = "porsche_vpc" 
   }
 }
 
