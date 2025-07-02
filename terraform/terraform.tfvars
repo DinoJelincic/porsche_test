@@ -31,8 +31,13 @@ subnets = {
   }
 }
 
-igw_tags = {
-  tags = "porsche_igw"
+igw = {
+  "porsche_igw" = {
+    vpc_id = "porsche_vpc"
+    tags = {
+      Name = "porsche_igw"
+    }
+  }
 }
 
 nat = {

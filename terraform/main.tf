@@ -14,11 +14,10 @@ module "subnets" {
   depends_on = [module.vpc]
 }
 resource "aws_internet_gateway" "igw" {
-  vpc_id = module.vpc.id
-  tags = var.igw_tags
-
+  for_each = var.igw
+  vpc_id = module.vpc[each.value.vpc_id].id
+  tags   = each.value
 }
-
 resource "aws_eip" "nat_ip" {
 }
 
