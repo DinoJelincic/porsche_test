@@ -3,7 +3,6 @@ resource "aws_vpc" "vpc" {
       ignore_changes = [ tags ]
     }
   cidr_block       = var.settings.cidr_block
-  #region = var.settings.region
   instance_tenancy = var.settings.instance_tenancy
   enable_dns_hostnames = var.settings.enable_dns_hostnames
   enable_dns_support = var.settings.enable_dns_support
