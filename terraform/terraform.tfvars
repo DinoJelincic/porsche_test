@@ -44,4 +44,33 @@ nat = {
   }
 }
 
+route_table = {
+  "private" = {
+    vpc_id        = "porsche_vpc"
+    nat_id        = "porsche_nat"
+    cidr_block    = "0.0.0.0/0"
+    tags = {
+      Name = "private_rt"
+    }
+  }
 
+  "public" = {
+    vpc_id     = "porsche_vpc"
+    gateway_id = "porsche_igw"
+    cidr_block = "0.0.0.0/0"
+    tags = {
+      Name = "public_rt"
+    }
+  }
+}
+
+rt_association = {
+  "public" = {
+    subnet_name      = "public_subnet"
+    route_table_name = "public"
+  }
+  "private" = {
+    subnet_name      = "private_subnet"
+    route_table_name = "private"
+  }
+}

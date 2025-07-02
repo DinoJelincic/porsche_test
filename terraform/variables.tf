@@ -18,7 +18,6 @@ variable "subnets" {
   description = "Subnet configuration"
   type = map(object({
     vpc_id                  = string
-    #availability_zone       = string
     cidr_block = string
     map_public_ip_on_launch = bool
     tags                    = map(string)
@@ -36,4 +35,21 @@ variable "nat" {
     private_subnet = string
     tags = map(string) 
   }) 
+}
+
+variable "route_table" {
+  type = object({
+    vpc_id = string
+    gateway_id = string
+    nat_gateway_id = string
+    cidr_block = string
+    tags = map(string)
+  })
+}
+
+variable "rt_association" {
+  type = map(object({
+    subnet_name       = string
+    route_table_name  = string
+  }))
 }

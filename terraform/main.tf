@@ -27,3 +27,21 @@ module "nat" {
     tags = var.nat.tags
     depends_on = [ module.subnets ]
 }
+
+module "route_table" {
+  source   = "./modules/networking/route_table"
+  for_each = var.route_table
+  vpc_id         = module.vpc[each.value.vpc_id].id
+  gateway_id     = try(module.igw[each.value.gateway_id].id, null)
+  nat_gateway_id = try(module.nat[each.value.nat_id].id, null)
+  cidr_block     = each.value.cidr_block
+  tags           = each.value.tags
+  depends_on = [module.nat, module.igw]
+}
+
+resource "aws_route_table_association" "assoc" {
+  for_each = var.rt_association
+  subnet_id      = module.subnets[each.value.subnet_name].id
+  route_table_id = module.route_table[each.value.route_table_name].id
+  depends_on = [module.route_table, module.subnets]
+}
