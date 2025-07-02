@@ -49,18 +49,18 @@ nat = {
 }
 
 
-# route_tables = {
-#   "public" = {
-#     vpc_id         = "porsche_vpc"
-#     gateway_id     = "porsche_igw"
-#     nat_gateway_id = "porsche_nat"
-#     route = [
-#       {
-#         cidr_block = "0.0.0.0/0"
-#       }
-#     ]
-#     tags = {
-#       Name = "public_route_table"
-#     }
-#   }
-# }
+route_tables = {
+  "public" = {
+    vpc_id         = "porsche_vpc"
+    gateway_id     = "porsche_igw"
+    nat_gateway_id = "porsche_nat"
+    route = [
+      {
+        cidr_block = "0.0.0.0/0"
+      }
+    ]
+    tags = {
+      Name = "public_route_table"
+    }
+  }
+}
