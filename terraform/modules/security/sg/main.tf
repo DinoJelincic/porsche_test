@@ -3,7 +3,7 @@ resource "aws_security_group" "ec2_sg" {
   vpc_id      = var.vpc_id
 
   dynamic "ingress" {
-    for_each = var.settings.ingress_rules
+    for_each = var.settings.ingress
     content {
       from_port   = ingress.value.from_port
       to_port     = ingress.value.to_port
@@ -13,7 +13,7 @@ resource "aws_security_group" "ec2_sg" {
   }
 
   dynamic "egress" {
-    for_each = var.settings.egress_rules
+    for_each = var.settings.egress
     content {
       from_port   = egress.value.from_port
       to_port     = egress.value.to_port
