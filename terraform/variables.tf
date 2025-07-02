@@ -41,11 +41,11 @@ variable "route_table" {
   description = "Route table configuration"
   type = map(object({
     vpc_id = string
-    route = list(object({
+    route = object({
       cidr_block      = string
       gateway_id      = optional(string)
       nat_gateway_id  = optional(string)
-    }))
+    })
     tags = map(string)
   }))
 }

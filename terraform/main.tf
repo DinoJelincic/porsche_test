@@ -32,9 +32,9 @@ module "route_table" {
   source   = "./modules/networking/route_table"
   for_each = var.route_table
   vpc_id         = module.vpc[each.value.vpc_id].id
-  gateway_id     = try(module.igw[each.value.gateway_id].id, null)
-  nat_gateway_id = try(module.nat[each.value.nat_gateway_id].id, null)
-  cidr_block     = each.value.cidr_block
+  cidr_block     = each.value.route.cidr_block
+  gateway_id     = try(module.igw[each.value.route.gateway_id].id, null)
+  nat_gateway_id = try(module.nat[each.value.route.nat_gateway_id].id, null)
   tags           = each.value.tags
   depends_on = [module.nat, module.igw]
 }

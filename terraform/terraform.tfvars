@@ -47,29 +47,26 @@ nat = {
 route_table = {
   private = {
     vpc_id = "porsche_vpc"
-    route = [
-      {
-        cidr_block     = "0.0.0.0/0"
-        nat_gateway_id = "porsche_nat"
-      }
-    ]
+    route = {
+      cidr_block     = "0.0.0.0/0"
+      nat_gateway_id = "porsche_nat"
+    }
     tags = {
       Name = "private_rt"
     }
   }
   public = {
     vpc_id = "porsche_vpc"
-    route = [
-      {
-        cidr_block = "0.0.0.0/0"
-        gateway_id = "porsche_igw"
-      }
-    ]
+    route = {
+      cidr_block = "0.0.0.0/0"
+      gateway_id = "porsche_igw"
+    }
     tags = {
       Name = "public_rt"
     }
   }
 }
+
 
 
 rt_association = {
