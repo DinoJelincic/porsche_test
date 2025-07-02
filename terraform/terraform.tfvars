@@ -75,7 +75,7 @@ route_tables = {
       }
     ]
     tags = {
-      Name = "public_route_table"
+      Name = "private_route_table"
     }
   }
   
