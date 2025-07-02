@@ -131,7 +131,7 @@ sg = {
 bucket = {
   "porsche_bucket" = {
     tags = {
-      Name = "porsche_bucket"
+      Name = "porsche-bucket"
     }
     
   }
