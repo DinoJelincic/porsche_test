@@ -69,6 +69,7 @@ route_table = {
 
 
 
+
 rt_association = {
   "public" = {
     subnet_name      = "public_subnet"
