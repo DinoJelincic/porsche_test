@@ -94,18 +94,34 @@ rt_association = {
 sg = {
   ec2_sg = {
     vpc_id = "porsche_vpc"
-    ingress = [{
-      cidr_blocks = [ "0.0.0.0/0" ]
-      from_port = 80
-      protocol = "tcp"
-      to_port = 80
-    }]
-    egress = [{
-      cidr_blocks= [ "0.0.0.0/0" ]
-      from_port = 0
-      protocol = "-1"
-      to_port = 0
-    }]
+    ingress = [
+      {
+        cidr_blocks = ["0.0.0.0/0"]
+        from_port   = 80
+        protocol    = "tcp"
+        to_port     = 80
+      },
+      {
+        cidr_blocks = ["0.0.0.0/0"]
+        from_port   = 443
+        protocol    = "tcp"
+        to_port     = 443
+      },
+      {
+        cidr_blocks = ["93.140.103.146"]
+        from_port   = 22
+        protocol    = "tcp" 
+        to_port     = 22
+      }
+    ]
+    egress = [
+      {
+        cidr_blocks = ["0.0.0.0/0"]
+        from_port   = 0
+        protocol    = "-1"
+        to_port     = 0
+      }
+    ]
     tags = {
       Name = "ec2_sg"
     }
