@@ -54,3 +54,11 @@ module "sg" {
   vpc_id = module.vpc[each.value.vpc_id].id
   
 }
+
+module "bucket" {
+  source = "./modules/bucket"
+  for_each = var.bucket
+  name = each.key
+  settings = each.value
+  
+}

@@ -79,3 +79,10 @@ variable "sg" {
   }))
   
 }
+
+variable "bucket" {
+  type = map(object({
+    tags = map(string)
+  }))
+  
+}
