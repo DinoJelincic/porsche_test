@@ -45,7 +45,7 @@ nat = {
 }
 
 route_table = {
-  "private" = {
+  private = {
     vpc_id = "porsche_vpc"
     route = [
       {
@@ -57,7 +57,7 @@ route_table = {
       Name = "private_rt"
     }
   }
-  "public" = {
+  public = {
     vpc_id = "porsche_vpc"
     route = [
       {
