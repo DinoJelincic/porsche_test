@@ -64,6 +64,20 @@ route_tables = {
       Name = "public_route_table"
     }
   }
+  "private" = {
+    vpc_id         = "porsche_vpc"
+    gateway_id     = "porsche_igw"
+    nat_gateway_id = "porsche_nat"
+    route = [
+      {
+        cidr_block = "0.0.0.0/0"
+        nat_gateway_id = "porsche_nat"
+      }
+    ]
+    tags = {
+      Name = "public_route_table"
+    }
+  }
   
 }
 
