@@ -95,13 +95,13 @@ sg = {
   ec2_sg = {
     vpc_id = "porsche_vpc"
     ingress = [{
-      cidr_block = [ "0.0.0.0/0" ]
+      cidr_blocks = [ "0.0.0.0/0" ]
       from_port = 80
       protocol = "tcp"
       to_port = 80
     }]
     egress = [{
-      cidr_block = [ "0.0.0.0/0" ]
+      cidr_blocks= [ "0.0.0.0/0" ]
       from_port = 0
       protocol = "-1"
       to_port = 0
