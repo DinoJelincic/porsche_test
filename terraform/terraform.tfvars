@@ -9,7 +9,22 @@ vpc = {
     tags = {
         Name = "porsche_vpc"
     }
-
-    
+  }
+}
+subnets = {
+  "public_subnet" = {
+    vpc_id = "porsche_vpc"
+    map_public_ip_on_launch = true
+    cidr_block = "10.10.1.0/24"
+    tags = {
+      Name = "public_subnet"
+    }
+  }
+  private_subnet = {
+    vpc_id = "porsche_vpc"
+    cidr_block = "10.10.100.0/24"
+    tags = {
+      Name = "private_subnet"
+    }
   }
 }
