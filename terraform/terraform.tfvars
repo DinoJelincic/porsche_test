@@ -31,18 +31,23 @@ subnets = {
 }
 
 igw = {
-  vpc_id = "porsche_vpc"
-  tags = {
-    Name = "porsche_igw"
+  "porsche_igw" = {
+    vpc_id = "porsche_vpc"
+    tags = {
+      Name = "porsche_igw"
+    }
   }
 }
 
 nat = {
-  private_subnet = "private_subnet"
-  tags = {
-    Name = "porsche_nat"
+  "porsche_nat" = {
+    private_subnet = "private_subnet"
+    tags = {
+      Name = "porsche_nat"
+    }
   }
 }
+
 
 route_tables = {
   "public" = {

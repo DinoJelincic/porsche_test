@@ -16,17 +16,18 @@ module "subnets" {
 
 module "igw" {
   source  = "./modules/networking/igw"
-  vpc_id  = module.vpc[var.igw.vpc_id].id
-  tags    = var.igw.tags
-  depends_on = [ module.subnets ]
+  for_each = var.igw
+  vpc_id = module.vpc[each.value.vpc_id].id
+  tags   = each.value.tags
 }
 
 module "nat" {
-    source = "./modules/networking/nat"
-    private_subnet = module.subnets[var.nat.private_subnet].id
-    tags = var.nat.tags
-    depends_on = [ module.subnets ]
+  source  = "./modules/networking/nat"
+  for_each = var.nat
+  private_subnet = module.subnets[each.value.private_subnet].id
+  tags           = each.value.tags
 }
+
 
 module "route_table" {
   source = "./modules/networking/route_table"
@@ -35,5 +36,6 @@ module "route_table" {
   vpc_id = module.vpc[each.value.vpc_id].id
   gateway_id = module.igw[each.value.gateway_id].id
   nat_gateway_id = module.nat[each.value.nat_gateway_id].id
+  depends_on = [ module.igw, module.nat ]
 }
 

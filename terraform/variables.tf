@@ -25,17 +25,19 @@ variable "subnets" {
 }
 
 variable "igw" {
-  type = object({
+  type = map(object({
     vpc_id = string
     tags   = map(string)
-  })
+  }))
 }
+
 variable "nat" {
-  type = object({
+  type = map(object({
     private_subnet = string
-    tags = map(string) 
-  }) 
+    tags           = map(string)
+  }))
 }
+
 
 variable "route_tables" {
   description = "Route table configuration"
