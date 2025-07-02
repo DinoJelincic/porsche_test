@@ -45,11 +45,11 @@ variable "route_tables" {
     vpc_id = string
     gateway_id = string
     nat_gateway_id = string
-    route = object({
+    route = list(object({
       cidr_block      = string
       gateway_id      = optional(string)
       nat_gateway_id  = optional(string)
-    })
+    }))
     tags = map(string)
   }))
 }
