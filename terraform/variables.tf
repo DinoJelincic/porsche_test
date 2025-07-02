@@ -24,35 +24,35 @@ variable "subnets" {
   }))
 }
 
-variable "igw" {
-  type = map(object({
-    vpc_id = string
-    tags   = map(string)
-  }))
-}
+# variable "igw" {
+#   type = map(object({
+#     vpc_id = string
+#     tags   = map(string)
+#   }))
+# }
 
-variable "nat" {
-  type = map(object({
-    private_subnet = string
-    tags           = map(string)
-  }))
-}
+# variable "nat" {
+#   type = map(object({
+#     private_subnet = string
+#     tags           = map(string)
+#   }))
+# }
 
 
-variable "route_tables" {
-  description = "Route table configuration"
-  type = map(object({
-    vpc_id          = string
-    gateway_id      = string
-    nat_gateway_id  = string
-    route = list(object({
-      cidr_block      = string
-      gateway_id      = optional(string)
-      nat_gateway_id  = optional(string)
-    }))
-    tags = map(string)
-  }))
-}
+# variable "route_tables" {
+#   description = "Route table configuration"
+#   type = map(object({
+#     vpc_id          = string
+#     gateway_id      = string
+#     nat_gateway_id  = string
+#     route = list(object({
+#       cidr_block      = string
+#       gateway_id      = optional(string)
+#       nat_gateway_id  = optional(string)
+#     }))
+#     tags = map(string)
+#   }))
+# }
 
 
 # variable "rt_association" {
