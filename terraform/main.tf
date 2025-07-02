@@ -13,3 +13,10 @@ module "subnets" {
   settings           = each.value
   depends_on = [module.vpc]
 }
+
+module "igw" {
+    source = "./modules/networking/igw"
+    for_each = var.igw
+    name = each.key
+    vpc_id = module.vpc[each.value.vpc_id].id
+}
