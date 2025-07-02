@@ -38,13 +38,13 @@ variable "nat" {
 }
 
 variable "route_table" {
-  type = object({
+  type = map(object({
     vpc_id = string
-    gateway_id = string
-    nat_gateway_id = string
+    gateway_id = optional(string)
+    nat_gateway_id = optional(string)
     cidr_block = string
     tags = map(string)
-  })
+  }))
 }
 
 variable "rt_association" {
