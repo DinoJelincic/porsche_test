@@ -28,6 +28,12 @@ module "nat" {
     depends_on = [ module.subnets ]
 }
 
-
-
+module "route_table" {
+  source = "./modules/networking/route_table"
+  for_each = var.route_tables
+  settings = each.value
+  vpc_id = module.vpc[each.value.vpc_id].id
+  gateway_id = module.igw[each.value.gateway_id].id
+  nat_gateway_id = module.nat[each.value.nat_gateway_id].id
+}
 

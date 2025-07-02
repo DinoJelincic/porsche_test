@@ -43,3 +43,16 @@ nat = {
     Name = "porsche_nat"
   }
 }
+
+route_tables = {
+  "public" = {
+    vpc_id = "porsche_vpc"
+    gateway_id = "porsche_igw"
+    nat_gateway_id = "porsche_nat"
+    route = [{
+      cidr_block = "0.0.0.0/0"
+
+  }]
+    
+  }
+}
