@@ -31,14 +31,8 @@ subnets = {
   }
 }
 
-igw = {
-  "porsche_igw" = {
-    vpc_id = "porsche_vpc"
-    tags = {
-      Name = "porsche_igw"
-    }
-    
-  }
+igw_tags = {
+  tags = "porsche_igw"
 }
 
 nat = {
@@ -64,18 +58,18 @@ route_table = {
     }
     
   }
-  "private" = {
-    vpc_id = "porsche_vpc"
-    route = [
-  {
-    nat_gateway_id = "porsche_nat"
-    cidr_block = "0.0.0.0/0"
-  }]
-    tags = {
-      Name = "private_route_table"
-    }
+  # "private" = {
+  #   vpc_id = "porsche_vpc"
+  #   route = [
+  # {
+  #   nat_gateway_id = "porsche_nat"
+  #   cidr_block = "0.0.0.0/0"
+  # }]
+  #   tags = {
+  #     Name = "private_route_table"
+  #   }
     
-  }
+  # }
 }
 
 rt_association = {
@@ -83,8 +77,8 @@ rt_association = {
     subnet_name = "public_subnet"
     route_table_name = "public"
   }
-  "private" = {
-    subnet_name = "private_subnet"
-    route_table_name = "private"
-  }
+  # "private" = {
+  #   subnet_name = "private_subnet"
+  #   route_table_name = "private"
+  # }
 }

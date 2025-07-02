@@ -13,32 +13,31 @@ module "subnets" {
   settings           = each.value
   depends_on = [module.vpc]
 }
+resource "aws_internet_gateway" "igw" {
+  vpc_id = module.vpc.vpc_id
+  tags = var.igw_tags
 
-module "igw" {
-    source = "./modules/networking/igw"
-    for_each = var.igw
-    vpc_id = module.vpc[each.value.vpc_id].id
-    settings = each.value 
-    depends_on = [ module.vpc, module.subnets ]
 }
 
-module "nat" {
-    source = "./modules/networking/nat"
-    for_each = var.nat
-    subnet_id = module.subnets[each.value.private_subnet].id
-    settings = each.value
-    depends_on = [ module.vpc, module.subnets ]
-  
+resource "aws_eip" "nat_ip" {
 }
+
+resource "aws_nat_gateway" "nat" {
+  for_each = var.nat
+  allocation_id = aws_eip.nat_ip.id
+  subnet_id     = module.subnets[each.value.private_subnet].id
+  tags = var.nat.tags
+}
+
 
 module "route_table" {
   source           = "./modules/networking/route_table"
   for_each         = var.route_table
   vpc_id           = module.vpc[each.value.vpc_id].id
-  gateway_id      = { for k, igw in module.igw : k => igw.id }
-  nat_gateway_id  = { for k, nat in module.nat : k => nat.id }
+  gateway_id      = aws_internet_gateway.igw.id
+  nat_gateway_id  = aws_nat_gateway.nat.id
   settings         = each.value
-  depends_on       = [module.igw, module.nat]
+  depends_on       = [aws_internet_gateway.igw, aws_nat_gateway.nat]
   
 }
 

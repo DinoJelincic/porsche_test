@@ -26,23 +26,26 @@ variable "subnets" {
   }))
 }
 
-variable "igw" {
-  description = "Internet Gateway configuration"
-  type = map(object({
-    vpc_id = string
-    tags   = map(string)
-  }))
-  
+variable "igw_tags" {
+  description = "Internet Gateway tags"
 }
 
 variable "nat" {
-  description = "Nat Gateway configuration"
   type = map(object({
-    private_subnet = string 
+    private_subnet = string
     tags = map(string)
   }))
   
 }
+
+# variable "nat" {
+#   description = "Nat Gateway configuration"
+#   type = map(object({
+#     private_subnet = string 
+#     tags = map(string)
+#   }))
+  
+# }
 
 variable "route_table" {
   description = "Route table configuration"
