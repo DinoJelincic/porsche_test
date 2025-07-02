@@ -30,12 +30,11 @@ module "nat" {
 
 
 module "route_table" {
-  source = "./modules/networking/route_table"
+  source   = "./modules/networking/route_table"
   for_each = var.route_tables
-  settings = each.value
-  vpc_id = module.vpc[each.value.vpc_id].id
-  gateway_id = module.igw[each.value.gateway_id].id
-  nat_gateway_id = module.nat[each.value.nat_gateway_id].id
-  depends_on = [ module.igw, module.nat ]
+  settings        = each.value
+  vpc_id          = module.vpc[each.value.vpc_id].id
+  gateway_id      = contains(keys(module.igw), each.value.gateway_id) ? module.igw[each.value.gateway_id].id : null
+  nat_gateway_id  = contains(keys(module.nat), each.value.nat_gateway_id) ? module.nat[each.value.nat_gateway_id].id : null
+  depends_on = [module.igw, module.nat]
 }
-
