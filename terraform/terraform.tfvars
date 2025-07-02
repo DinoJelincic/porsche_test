@@ -22,6 +22,7 @@ subnets = {
   }
   private_subnet = {
     vpc_id = "porsche_vpc"
+    map_public_ip_on_launch = false
     cidr_block = "10.10.100.0/24"
     tags = {
       Name = "private_subnet"
