@@ -14,12 +14,12 @@ module "subnets" {
   depends_on = [module.vpc]
 }
 
-# module "igw" {
-#   source  = "./modules/networking/igw"
-#   for_each = var.igw
-#   vpc_id = module.vpc[each.value.vpc_id].id
-#   tags   = each.value.tags
-# }
+module "igw" {
+  source  = "./modules/networking/igw"
+  for_each = var.igw
+  vpc_id = module.vpc[each.value.vpc_id].id
+  tags   = each.value.tags
+}
 
 # module "nat" {
 #   source  = "./modules/networking/nat"
