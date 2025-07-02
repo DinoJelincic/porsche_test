@@ -53,6 +53,8 @@ route_tables = {
       cidr_block = "0.0.0.0/0"
 
   }]
-    
+  tags = {
+    Name = "public_route_table"
   }
+ }
 }
