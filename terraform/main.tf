@@ -38,3 +38,10 @@ module "route_table" {
   nat_gateway_id  = contains(keys(module.nat), each.value.nat_gateway_id) ? module.nat[each.value.nat_gateway_id].id : null
   depends_on = [module.igw, module.nat]
 }
+
+resource "aws_route_table_association" "public_assoc" {
+  for_each = var.rt_association
+  subnet_id      = module.subnets[each.value.subnet_name].id
+  route_table_id = module.route_table[each.value.route_table_name].id
+  depends_on = [ module.route_table, module.subnets ]
+}

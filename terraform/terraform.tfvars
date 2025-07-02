@@ -81,3 +81,14 @@ route_tables = {
   
 }
 
+rt_association = {
+  "public" = {
+    subnet_name = "public_subnet"
+    route_table_name = "public"
+  }
+  "private" = {
+    subnet_name = "private_subnet"
+    route_table_name = "private"
+  }
+}
+

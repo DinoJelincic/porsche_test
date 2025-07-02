@@ -55,9 +55,9 @@ variable "route_tables" {
 }
 
 
-# variable "rt_association" {
-#   type = map(object({
-#     subnet_name       = string
-#     route_table_name  = string
-#   }))
-# }
+variable "rt_association" {
+  type = map(object({
+    subnet_name       = string
+    route_table_name  = string
+  }))
+}
