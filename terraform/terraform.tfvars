@@ -57,6 +57,7 @@ route_tables = {
     route = [
       {
         cidr_block = "0.0.0.0/0"
+        gateway_id = "some"
       }
     ]
     tags = {
@@ -64,3 +65,4 @@ route_tables = {
     }
   }
 }
+
