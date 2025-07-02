@@ -106,5 +106,8 @@ sg = {
       protocol = "-1"
       to_port = 0
     }]
+    tags = {
+      Name = "ec2_sg"
+    }
   }
 }
