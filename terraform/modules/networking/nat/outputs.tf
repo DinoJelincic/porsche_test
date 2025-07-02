@@ -2,7 +2,7 @@ output "ip" {
     value = aws_eip.nat_ip.address
   
 }
-output "nat" {
+output "id" {
     value = aws_nat_gateway.nat.id
   
 }
