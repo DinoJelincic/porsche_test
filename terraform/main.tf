@@ -35,7 +35,8 @@ module "route_table" {
     source = "./modules/networking/route_table"
     for_each = var.route_table
     vpc_id = module.vpc[each.value.vpc_id].id
-    gateway_id = module.igw
+    gateway_id = module.igw[route.value.gateway_id].id
+    nat_gateway_id = module.nat[route.value.nat_gateway_id].id
     settings = each.value
     depends_on = [ module.igw, module.nat ]
   
