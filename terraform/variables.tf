@@ -162,6 +162,14 @@ variable "s3_policy" {
   }))
   
 }
+variable "alb" {
+  type = map(object({
+    vpc = string 
+    public_subnet = string
+    security_group = list(string)
+  }))
+  
+}
 
 # variable "sg" {
 #   type = map(object({

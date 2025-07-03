@@ -232,6 +232,15 @@ s3_policy = {
   }
 }
 
+alb = {
+  "porsche_alb" = {
+    vpc = "porsche_vpc"
+    public_subnet = "public_subnet"
+    security_group = ["alb_sg"]
+    
+  }
+}
+
 
 # sg = {
 #   ec2_sg = {
