@@ -112,6 +112,18 @@ variable "ec2_sg" {
   }))  
 }
 
+variable "endpoint" {
+  type = map(object({
+    vpc_id = string
+    private_route_table = list(string)
+    service_name = string
+    vpc_endpoint_type = string
+    tags = map(string)
+
+  }))
+  
+}
+
 variable "bucket" {
   type = map(object({
     tags = map(string)
@@ -142,17 +154,7 @@ variable "bucket" {
 
 
 
-# variable "endpoint" {
-#   type = map(object({
-#     vpc_id = string
-#     private_route_table = list(string)
-#     service_name = string
-#     vpc_endpoint_type = string
-#     tags = map(string)
 
-#   }))
-  
-# }
 
 # # variable "s3_policy" {
 # #   type = map(object({

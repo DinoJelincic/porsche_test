@@ -153,6 +153,19 @@ ec2_sg = {
   }
 }
 
+endpoint = {
+  "s3_endpoint" = {
+    vpc_id = "porsche_vpc"
+    private_route_table = ["private"]
+    service_name = "com.amazonaws.eu-central-1.s3"
+    vpc_endpoint_type = "Gateway"
+    tags = {
+      Name = "s3_porsche_endpoint"
+    }
+    
+  }
+}
+
 bucket = {
   "porsche-bucket" = {
     tags = {
@@ -223,18 +236,7 @@ bucket = {
 
 
 
-# endpoint = {
-#   "s3_endpoint" = {
-#     vpc_id = "porsche_vpc"
-#     private_route_table = ["private"]
-#     service_name = "com.amazonaws.eu-central-1.s3"
-#     vpc_endpoint_type = "Gateway"
-#     tags = {
-#       Name = "s3_porsche_endpoint"
-#     }
-    
-#   }
-# }
+
 # # s3_policy = {
 # #   "bucket_policy" = {
 # #     bucket = "porsche-bucket"
