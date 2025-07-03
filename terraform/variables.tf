@@ -107,3 +107,10 @@ variable "endpoint" {
 #   }))
   
 # }
+variable "iam" {
+  type = map(object({
+    bucket = string
+    
+  }))
+  
+}

@@ -81,5 +81,15 @@ module "endpoint" {
   vpc_id          = module.vpc[each.value.vpc_id].id
   region          = var.region
   route_table_ids = [for name in each.value.private_route_table : module.route_table[name].id]
+  depends_on = [ module.vpc, module.bucket ]
 
+}
+
+module "iam" {
+  source = "./modules/security/iam"
+  for_each = var.iam
+  name = each.key
+  bucket_arn = module.bucket[each.value.bucket].arn
+
+  
 }

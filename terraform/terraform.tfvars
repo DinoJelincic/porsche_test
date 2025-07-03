@@ -157,3 +157,10 @@ endpoint = {
     
 #   }
 # }
+
+iam = {
+  "ec2_s3_access_role" = {
+    bucket = "porsche-bucket"
+    
+  }
+}
