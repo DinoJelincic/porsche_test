@@ -22,24 +22,6 @@ resource "aws_s3_bucket_policy" "restricted_policy" {
           var.bucket_arn,
           "${var.bucket_arn}/*"
         ]
-      },
-      {
-        Sid = "DenyAccessExceptVpcEndpointAndTerraform",
-        Effect = "Deny",
-        Principal = "*",
-        Action = "s3:*",
-        Resource = [
-          var.bucket_arn,
-          "${var.bucket_arn}/*"
-        ],
-        Condition = {
-          StringNotEquals = {
-            "aws:SourceVpce" = var.vpc_endpoint_id
-          },
-          StringNotLike = {
-            "aws:PrincipalArn" = var.terraform_role_arn
-          }
-        }
       }
     ]
   })
