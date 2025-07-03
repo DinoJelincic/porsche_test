@@ -128,14 +128,14 @@ sg = {
   }
 }
 
-bucket = {
-  "porsche-bucket" = {
-    tags = {
-      Name = "porsche-bucket"
-    }
+# bucket = {
+#   "porsche-bucket" = {
+#     tags = {
+#       Name = "porsche-bucket"
+#     }
     
-  }
-}
+#   }
+# }
 
 endpoint = {
   "s3_endpoint" = {

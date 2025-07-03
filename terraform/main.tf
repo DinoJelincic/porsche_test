@@ -55,13 +55,13 @@ module "sg" {
   
 }
 
-module "bucket" {
-  source = "./modules/bucket"
-  for_each = var.bucket
-  name = each.key
-  settings = each.value
+# module "bucket" {
+#   source = "./modules/bucket"
+#   for_each = var.bucket
+#   name = each.key
+#   settings = each.value
   
-}
+# }
 
 # module "s3_policy" {
 #   source = "./modules/bucket/policy"

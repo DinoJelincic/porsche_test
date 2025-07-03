@@ -80,12 +80,12 @@ variable "sg" {
   
 }
 
-variable "bucket" {
-  type = map(object({
-    tags = map(string)
-  }))
+# variable "bucket" {
+#   type = map(object({
+#     tags = map(string)
+#   }))
   
-}
+# }
 
 variable "endpoint" {
   type = map(object({
