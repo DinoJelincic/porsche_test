@@ -1,3 +1,6 @@
+variable "ec2_public_key" {
+  
+}
 variable "settings" {
   
 }

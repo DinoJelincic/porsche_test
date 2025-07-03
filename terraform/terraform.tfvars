@@ -182,6 +182,17 @@ iam = {
   }
 }
 
+ec2 = {
+  "porsche_ec2" = {
+    instance_type = "t2.micro"
+    subnet_id = "private_subnet"
+    security_group = ["ec2_sg"] 
+    instance_profile_name = "ec2_s3_access_role"
+    tags = {
+      Name = "porsche_ec2"
+    }
+  }
+}
 
 # s3_policy = {
 #   "bucket_policy" = {
@@ -258,14 +269,4 @@ iam = {
 
 
 
-# # compute = {
-# #   "porsche_ec2" = {
-# #     instance_type = "t2.micro"
-# #     subnet_id = "private_subnet"
-# #     security_group = ["ec2_sg"] 
-# #     instance_profile_name = "ec2_s3_access_role"
-# #     tags = {
-# #       Name = "porsche_ec2"
-# #     }
-# #   }
-# # }
+

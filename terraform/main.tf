@@ -103,6 +103,20 @@ module "iam" {
   bucket_arn = module.bucket[each.value.bucket].arn
 }
 
+
+module "compute" {
+  source = "./modules/compute/ec2"
+  for_each = var.ec2
+  settings = each.value
+  ami_id = data.aws_ami.ubuntu.id
+  subnet_id = module.subnets[each.value.subnet_id].id
+  vpc_security_group_ids = [for sg in each.value.security_group : module.sg[sg].id]
+  instance_profile = module.iam[each.value.instance_profile_name].instance_profile_name
+  ec2_public_key = var.ec2_public_key
+  depends_on = [ module.iam, module.vpc ]
+  
+}
+
 # module "s3_policy" {
 #   source = "./modules/bucket/policy"
 #   for_each = var.s3_policy
@@ -118,17 +132,6 @@ module "iam" {
 
 
 
-# # module "compute" {
-# #   source = "./modules/compute"
-# #   for_each = var.compute
-# #   settings = each.value
-# #   ami_id = data.aws_ami.ubuntu.id
-# #   subnet_id = module.subnets[each.value.subnet_id].id
-# #   vpc_security_group_ids = [for sg in each.value.security_group : module.sg[sg].id]
-# #   instance_profile = module.iam[each.value.instance_profile_name].instance_profile_name
-# #   depends_on = [ module.iam, module.vpc ]
-  
-# # }
 
 # # module "bastion" {
 # #   source = "./modules/compute/bastion"

@@ -1,6 +1,9 @@
 variable "bastion_public_key" {
   
 }
+variable "ec2_public_key" {
+  
+}
 variable "region" {
   description = "AWS region"
   type        = string
@@ -139,6 +142,17 @@ variable "iam" {
   
 }
 
+variable "ec2" {
+  type = map(object({
+    instance_type = string
+    subnet_id = string
+    security_group = list(string)
+    instance_profile_name = string
+    tags = map(string)
+  }))
+  
+}
+
 # variable "s3_policy" {
 #   type = map(object({
 #     bucket = string
@@ -176,16 +190,7 @@ variable "iam" {
 
 
 
-# # variable "compute" {
-# #   type = map(object({
-# #     instance_type = string
-# #     subnet_id = string
-# #     security_group = list(string)
-# #     instance_profile_name = string
-# #     tags = map(string)
-# #   }))
-  
-# # }
+
 
 # # variable "bastion" {
 # #   type = map(object({

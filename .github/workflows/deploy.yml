@@ -11,6 +11,7 @@ jobs:
       contents: read
     env:
       BASTION_PUBLIC_KEY: ${{ secrets.BASTION_PUBLIC_KEY }}
+      EC2_PUBLIC_KEY: ${{ secrets.EC2_PUBLIC_KEY }}
 
     steps:
       - name: Checkout code
@@ -32,4 +33,4 @@ jobs:
         run: |
           cd terraform
           terraform init
-          terraform apply -auto-approve -var="bastion_public_key=$BASTION_PUBLIC_KEY"
+          terraform apply -auto-approve -var="bastion_public_key=$BASTION_PUBLIC_KEY" -var="ec2_public_key=$EC2_PUBLIC_KEY"
