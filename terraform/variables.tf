@@ -110,7 +110,18 @@ variable "endpoint" {
 variable "iam" {
   type = map(object({
     bucket = string
-    
+
+  }))
+  
+}
+
+variable "compute" {
+  type = map(object({
+    instance_type = string
+    subnet_id = string
+    security_group = string
+    instance_profile = string
+    tags = map(string)
   }))
   
 }

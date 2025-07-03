@@ -164,3 +164,16 @@ iam = {
     
   }
 }
+
+compute = {
+  "porsche_ec2" = {
+    instance_type = "t2.micro"
+    subnet_id = "private_subnet"
+    security_group = "ec2_sg"
+    instance_profile = "instance_profile"
+    tags = {
+      Name = "porsche_ec2"
+    }
+    
+  }
+}
