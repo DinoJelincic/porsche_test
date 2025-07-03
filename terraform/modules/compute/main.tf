@@ -9,7 +9,7 @@ resource "aws_key_pair" "ec2_key" {
 }
 
 resource "aws_instance" "app_instance" {
-  ami                    = data.aws_ami.ubuntu.id
+  ami                    = var.ami_id
   instance_type          = var.settings.instance_type
   subnet_id              = var.subnet_id
   vpc_security_group_ids = var.vpc_security_group_ids
