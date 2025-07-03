@@ -63,6 +63,7 @@ module "bastion" {
   ami_id = data.aws_ami.ubuntu.id
   subnet_id = module.subnets[each.value.subnet_id].id
   vpc_security_group_ids = [for sg in each.value.security_group : module.bastion_sg[sg].id]
+  bastion_public_key = var.bastion_public_key
   depends_on = [ module.vpc ]
 }
 

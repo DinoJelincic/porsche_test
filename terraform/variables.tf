@@ -1,3 +1,6 @@
+variable "bastion_public_key" {
+  
+}
 variable "region" {
   description = "AWS region"
   type        = string
