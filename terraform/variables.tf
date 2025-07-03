@@ -120,7 +120,7 @@ variable "compute" {
     instance_type = string
     subnet_id = string
     security_group = list(string)
-    #instance_profile = string
+    instance_profile_name = string
     tags = map(string)
   }))
   
