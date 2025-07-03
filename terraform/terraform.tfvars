@@ -108,7 +108,7 @@ sg = {
         to_port     = 443
       },
       {
-        cidr_blocks = ["93.140.103.146/32"]
+        cidr_blocks = [" 93.138.253.37/32"]
         from_port   = 22
         protocol    = "tcp" 
         to_port     = 22
@@ -165,14 +165,14 @@ iam = {
   }
 }
 
-compute = {
-  "porsche_ec2" = {
-    instance_type = "t2.micro"
-    subnet_id = "private_subnet"
-    security_group = ["ec2_sg"] 
-    instance_profile_name = "ec2_s3_access_role"
-    tags = {
-      Name = "porsche_ec2"
-    }
-  }
-}
+# compute = {
+#   "porsche_ec2" = {
+#     instance_type = "t2.micro"
+#     subnet_id = "private_subnet"
+#     security_group = ["ec2_sg"] 
+#     instance_profile_name = "ec2_s3_access_role"
+#     tags = {
+#       Name = "porsche_ec2"
+#     }
+#   }
+# }
