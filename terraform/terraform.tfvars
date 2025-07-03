@@ -23,7 +23,7 @@ subnets = {
 "public2_subnet" = {
     vpc_id                  = "porsche_vpc"
     map_public_ip_on_launch = true
-    cidr_block              = "10.10.1.0/24"
+    cidr_block              = "10.10.10.0/24"
     tags = {
       Name = "public2_subnet"
     }
