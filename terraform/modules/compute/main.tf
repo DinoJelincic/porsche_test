@@ -1,11 +1,6 @@
-resource "tls_private_key" "ec2_key" {
-  algorithm = "RSA"
-  rsa_bits  = 2048
-}
-
 resource "aws_key_pair" "ec2_key" {
   key_name   = "porsche_ec2_key"
-  public_key = tls_private_key.ec2_key.public_key_openssh
+  public_key = file("~/.ssh/porsche_ec2_key.pub")
 }
 
 resource "aws_instance" "app_instance" {
@@ -15,9 +10,10 @@ resource "aws_instance" "app_instance" {
   vpc_security_group_ids = var.vpc_security_group_ids
   iam_instance_profile   = var.instance_profile
 
-  associate_public_ip_address = true
+  associate_public_ip_address = false
 
   key_name = aws_key_pair.ec2_key.key_name
+
 
   user_data = <<-EOF
               #!/bin/bash
@@ -25,9 +21,6 @@ resource "aws_instance" "app_instance" {
               apt-get install -y docker.io
               systemctl start docker
               systemctl enable docker
-
-              # Pokreni Python app u Dockeru (zamijeni image po potrebi)
-              docker run -d -p 80:80 your-python-app-image
               EOF
 
   tags = var.settings.tags

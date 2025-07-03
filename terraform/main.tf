@@ -103,3 +103,14 @@ module "iam" {
 #   depends_on = [ module.iam, module.vpc ]
   
 # }
+
+# module "bastion" {
+#   source = "./modules/compute/bastion"
+#   for_each = var.bastion
+#   settings = each.value
+#   ami_id = data.aws_ami.ubuntu.id
+#   subnet_id = module.subnets[each.value.subnet_id].id
+
+
+  
+# }

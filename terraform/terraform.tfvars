@@ -108,6 +108,28 @@ sg = {
         to_port     = 443
       },
       {
+        from_port       = 22
+        to_port         = 22
+        protocol        = "tcp"
+        security_groups = ["bastion_sg"]
+      }
+    ]
+    egress = [
+      {
+        cidr_blocks = ["0.0.0.0/0"]
+        from_port   = 0
+        protocol    = "-1"
+        to_port     = 0
+      }
+    ]
+    tags = {
+      Name = "ec2_sg"
+    }
+  }
+  bastion_sg = {
+    vpc_id = "porsche_vpc"
+    ingress = [
+      {
         cidr_blocks = ["93.138.253.37/32"]
         from_port   = 22
         protocol    = "tcp" 
@@ -123,8 +145,8 @@ sg = {
       }
     ]
     tags = {
-      Name = "ec2_sg"
-    }
+      Name = "bastion_sg"
+    }    
   }
 }
 
