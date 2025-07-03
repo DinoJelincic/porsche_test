@@ -1,6 +1,6 @@
 resource "aws_security_group" "ec2_sg" {
-  name   = var.name
-  vpc_id = var.vpc_id
+  name        = var.name
+  vpc_id      = var.vpc_id
 
   dynamic "ingress" {
     for_each = var.settings.ingress
@@ -9,10 +9,7 @@ resource "aws_security_group" "ec2_sg" {
       to_port     = ingress.value.to_port
       protocol    = ingress.value.protocol
       cidr_blocks = lookup(ingress.value, "cidr_blocks", null)
-
-      security_groups = ingress.value.security_groups != null ? [
-        for sg_name in ingress.value.security_groups : module.bastion_sg[sg].id
-      ] : null
+      security_groups = lookup(ingress.value, "security_groups", null)
     }
   }
 
@@ -27,4 +24,5 @@ resource "aws_security_group" "ec2_sg" {
   }
 
   tags = var.settings.tags
+
 }
