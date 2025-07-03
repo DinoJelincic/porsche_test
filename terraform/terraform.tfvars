@@ -233,12 +233,12 @@ s3_policy = {
 }
 
 alb = {
-  "porsche_alb" = {
+  "porsche-alb" = {
     vpc = "porsche_vpc"
     public_subnet = "public_subnet"
     security_group = ["alb_sg"]
     tags = {
-      Name = "porsche_alb"
+      Name = "porsche-alb"
     }
   }
 }
