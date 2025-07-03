@@ -165,7 +165,7 @@ variable "s3_policy" {
 variable "alb" {
   type = map(object({
     vpc = string 
-    public_subnet = string
+    public_subnet = list(string)
     security_group = list(string)
     tags = map(string)
   }))

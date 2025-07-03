@@ -63,6 +63,20 @@ route_tables = {
       Name = "public_route_table"
     }
   }
+  "public2" = {
+    vpc_id         = "porsche_vpc"
+    gateway_id     = "porsche_igw"
+    nat_gateway_id = "porsche_nat"
+    route = [
+      {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = "porsche_igw"
+      }
+    ]
+    tags = {
+      Name = "public2_route_table"
+    }
+  }  
   "private" = {
     vpc_id         = "porsche_vpc"
     gateway_id     = "porsche_igw"
@@ -235,7 +249,7 @@ s3_policy = {
 alb = {
   "porsche-alb" = {
     vpc = "porsche_vpc"
-    public_subnet = "public_subnet"
+    public_subnet = ["public_subnet", "public2_subnet"]
     security_group = ["alb_sg"]
     tags = {
       Name = "porsche-alb"

@@ -137,6 +137,7 @@ module "alb" {
   vpc_id = module.vpc[each.value.vpc].id
   public_subnets_id = [module.subnets[each.value.public_subnet].id]
   alb_sg_id = [for sg in each.value.security_group : module.bastion_sg[sg].id]
+  depends_on = [ module.subnets ]
   
 }
 
