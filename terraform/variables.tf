@@ -170,7 +170,6 @@ variable "alb" {
     security_group = list(string)
     tags = map(string)
   }))
-  
 }
 
 # variable "sg" {
