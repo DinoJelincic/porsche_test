@@ -153,6 +153,15 @@ ec2_sg = {
   }
 }
 
+bucket = {
+  "porsche-bucket" = {
+    tags = {
+      Name = "porsche-bucket"
+    }
+    
+  }
+}
+
 # sg = {
 #   ec2_sg = {
 #     vpc_id = "porsche_vpc"
@@ -212,14 +221,7 @@ ec2_sg = {
 #   }
 # }
 
-# bucket = {
-#   "porsche-bucket" = {
-#     tags = {
-#       Name = "porsche-bucket"
-#     }
-    
-#   }
-# }
+
 
 # endpoint = {
 #   "s3_endpoint" = {

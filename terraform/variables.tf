@@ -112,6 +112,13 @@ variable "ec2_sg" {
   }))  
 }
 
+variable "bucket" {
+  type = map(object({
+    tags = map(string)
+  }))
+  
+}
+
 # variable "sg" {
 #   type = map(object({
 #     vpc_id = string
@@ -133,12 +140,7 @@ variable "ec2_sg" {
   
 # }
 
-# variable "bucket" {
-#   type = map(object({
-#     tags = map(string)
-#   }))
-  
-# }
+
 
 # variable "endpoint" {
 #   type = map(object({
