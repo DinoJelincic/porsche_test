@@ -136,3 +136,16 @@ bucket = {
     
   }
 }
+
+endpoint = {
+  "s3_endpoint" = {
+    vpc_id = "porsche_vpc"
+    route_table_ids = "private"
+    service_name = "com.amazonaws.eu-central-1.s3"
+    vpc_endpoint_type = "Gateway"
+    tags = {
+      Name = "s3_porsche_endpoint"
+    }
+    
+  }
+}
