@@ -10,6 +10,9 @@ jobs:
       id-token: write
       contents: read
 
+    env:
+      TF_VAR_bastion_public_key: ${{ secrets.BASTION_SSH_PUBLIC_KEY }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
