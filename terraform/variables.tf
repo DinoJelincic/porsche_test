@@ -167,6 +167,7 @@ variable "alb" {
     vpc = string 
     public_subnet = string
     security_group = list(string)
+    tags = map(string)
   }))
   
 }

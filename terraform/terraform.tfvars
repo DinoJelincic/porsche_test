@@ -237,7 +237,9 @@ alb = {
     vpc = "porsche_vpc"
     public_subnet = "public_subnet"
     security_group = ["alb_sg"]
-    
+    tags = {
+      Name = "porsche_alb"
+    }
   }
 }
 
