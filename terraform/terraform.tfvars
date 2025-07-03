@@ -20,6 +20,14 @@ subnets = {
       Name = "public_subnet"
     }
   }
+"public2_subnet" = {
+    vpc_id                  = "porsche_vpc"
+    map_public_ip_on_launch = true
+    cidr_block              = "10.10.1.0/24"
+    tags = {
+      Name = "public2_subnet"
+    }
+  }  
   private_subnet = {
     vpc_id                  = "porsche_vpc"
     map_public_ip_on_launch = false
@@ -63,7 +71,7 @@ route_tables = {
       Name = "public_route_table"
     }
   }
-  "public2" = {
+  "public" = {
     vpc_id         = "porsche_vpc"
     gateway_id     = "porsche_igw"
     nat_gateway_id = "porsche_nat"
@@ -74,7 +82,7 @@ route_tables = {
       }
     ]
     tags = {
-      Name = "public2_route_table"
+      Name = "public_route_table"
     }
   }  
   "private" = {
@@ -246,16 +254,16 @@ s3_policy = {
   }
 }
 
-# alb = {
-#   "porsche-alb" = {
-#     vpc = "porsche_vpc"
-#     public_subnet = ["public_subnet", "public2_subnet"]
-#     security_group = ["alb_sg"]
-#     tags = {
-#       Name = "porsche-alb"
-#     }
-#   }
-# }
+alb = {
+  "porsche-alb" = {
+    vpc = "porsche_vpc"
+    public_subnet = "public_subnet"
+    security_group = ["alb_sg"]
+    tags = {
+      Name = "porsche-alb"
+    }
+  }
+}
 
 
 # sg = {
