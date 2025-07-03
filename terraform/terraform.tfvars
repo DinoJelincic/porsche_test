@@ -149,3 +149,10 @@ endpoint = {
     
   }
 }
+s3_policy = {
+  "bucket_policy" = {
+    bucket = "porsche-bucket"
+    endpoint = "s3_endpoint"
+    
+  }
+}

@@ -63,6 +63,16 @@ module "bucket" {
   
 }
 
+module "s3_policy" {
+  source = "./modules/bucket/policy"
+  for_each = var.s3_policy
+  bucket_arn = module.bucket[each.value.bucket].bucket_arn
+  bucket_id = module.bucket[each.value.bucket].index
+  vpc_endpoint_id = module.endpoint[each.value.endpoint].id
+
+  
+}
+
 module "endpoint" {
   source = "./modules/networking/endpoint"
   for_each        = var.endpoint

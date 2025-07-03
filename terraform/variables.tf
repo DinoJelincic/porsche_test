@@ -98,3 +98,11 @@ variable "endpoint" {
   }))
   
 }
+
+variable "s3_policy" {
+  type = map(object({
+    bucket = string
+    endpoint = string 
+  }))
+  
+}
