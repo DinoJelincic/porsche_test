@@ -26,6 +26,7 @@ variable "subnets" {
     vpc_id                  = string
     cidr_block              = string
     map_public_ip_on_launch = bool
+    availability_zone       = string
     tags                    = map(string)
   }))
 }
@@ -162,15 +163,15 @@ variable "s3_policy" {
   }))
   
 }
-variable "alb" {
-  type = map(object({
-    vpc = string 
-    public_subnet = list(string)
-    security_group = list(string)
-    tags = map(string)
-  }))
+# variable "alb" {
+#   type = map(object({
+#     vpc = string 
+#     public_subnet = list(string)
+#     security_group = list(string)
+#     tags = map(string)
+#   }))
   
-}
+# }
 
 # variable "sg" {
 #   type = map(object({
