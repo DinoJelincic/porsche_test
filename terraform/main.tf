@@ -124,7 +124,7 @@ module "s3_policy" {
   bucket_id = module.bucket[each.value.bucket].id
   terraform_role_arn = each.value.terraform_role_arn
   vpc_endpoint_id = module.endpoint[each.value.endpoint].id
-  ec2_role_arn = module.iam[each.value.iam_arn].arn
+  ec2_role_arn = module.iam[each.value.iam].arn
 
   
 }
