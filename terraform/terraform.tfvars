@@ -175,6 +175,24 @@ bucket = {
   }
 }
 
+iam = {
+  "ec2_s3_access_role" = {
+    bucket = "porsche-bucket"
+    
+  }
+}
+
+
+# s3_policy = {
+#   "bucket_policy" = {
+#     bucket = "porsche-bucket"
+#     endpoint = "s3_endpoint"
+#     terraform_role_arn = "arn:aws:iam::339712870085:role/porsche_role_github"
+    
+#   }
+# }
+
+
 # sg = {
 #   ec2_sg = {
 #     vpc_id = "porsche_vpc"
@@ -237,21 +255,8 @@ bucket = {
 
 
 
-# # s3_policy = {
-# #   "bucket_policy" = {
-# #     bucket = "porsche-bucket"
-# #     endpoint = "s3_endpoint"
-# #     terraform_role_arn = "arn:aws:iam::339712870085:role/porsche_role_github"
-    
-# #   }
-# # }
 
-# iam = {
-#   "ec2_s3_access_role" = {
-#     bucket = "porsche-bucket"
-    
-#   }
-# }
+
 
 # # compute = {
 # #   "porsche_ec2" = {

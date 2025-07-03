@@ -131,6 +131,23 @@ variable "bucket" {
   
 }
 
+variable "iam" {
+  type = map(object({
+    bucket = string
+
+  }))
+  
+}
+
+# variable "s3_policy" {
+#   type = map(object({
+#     bucket = string
+#     endpoint = string
+#     terraform_role_arn = string 
+#   }))
+  
+# }
+
 # variable "sg" {
 #   type = map(object({
 #     vpc_id = string
@@ -156,21 +173,8 @@ variable "bucket" {
 
 
 
-# # variable "s3_policy" {
-# #   type = map(object({
-# #     bucket = string
-# #     endpoint = string
-# #     terraform_role_arn = string 
-# #   }))
-  
-# # }
-# variable "iam" {
-#   type = map(object({
-#     bucket = string
 
-#   }))
-  
-# }
+
 
 # # variable "compute" {
 # #   type = map(object({
