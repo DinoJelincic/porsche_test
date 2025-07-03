@@ -108,7 +108,7 @@ sg = {
         to_port     = 443
       },
       {
-        cidr_blocks = [" 93.138.253.37/32"]
+        cidr_blocks = ["93.138.253.37/32"]
         from_port   = 22
         protocol    = "tcp" 
         to_port     = 22
