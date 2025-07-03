@@ -4,7 +4,6 @@ resource "aws_s3_bucket_policy" "restricted_policy" {
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
-      # DENY pristupa ako nije preko VPC endpointa
       {
         Sid = "DenyNonVpcEndpointAccess",
         Effect = "Deny",
@@ -31,6 +30,18 @@ resource "aws_s3_bucket_policy" "restricted_policy" {
           var.bucket_arn,
           "${var.bucket_arn}/*"
         ]
+      },
+      {
+        Sid = "AllowTerraformRolePolicyManagement",
+        Effect = "Allow",
+        Principal = {
+          AWS = var.terraform_role_arn
+        },
+        Action = [
+          "s3:GetBucketPolicy",
+          "s3:PutBucketPolicy"
+        ],
+        Resource = var.bucket_arn
       }
     ]
   })
