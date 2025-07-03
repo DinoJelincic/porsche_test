@@ -113,7 +113,6 @@ module "compute" {
   instance_profile = module.iam[each.value.instance_profile_name].instance_profile_name
   ec2_public_key = var.ec2_public_key
   depends_on = [ module.iam, module.vpc ]
-  
 }
 
 module "s3_policy" {
@@ -124,8 +123,6 @@ module "s3_policy" {
   terraform_role_arn = each.value.terraform_role_arn
   vpc_endpoint_id = module.endpoint[each.value.endpoint].id
   ec2_role_arn = module.iam[each.value.iam].arn
-
-  
 }
 
 module "alb" {
@@ -137,20 +134,12 @@ module "alb" {
   public_subnets_id = [for sn in each.value.public_subnet : module.subnets[sn].id]
   alb_sg_id = [for sg in each.value.security_group : module.bastion_sg[sg].id]
   depends_on = [ module.subnets ]
-  
 }
 
-
-
-
-
-# # module "bastion" {
-# #   source = "./modules/compute/bastion"
-# #   for_each = var.bastion
-# #   settings = each.value
-# #   ami_id = data.aws_ami.ubuntu.id
-# #   subnet_id = module.subnets[each.value.subnet_id].id
-
-
+module "registry" {
+  source = "./modules/registry"
+  for_each = var.ecr 
+  name = each.key
+  settings = each.value
   
-# # }
+}

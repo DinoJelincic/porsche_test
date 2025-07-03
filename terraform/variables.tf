@@ -172,38 +172,10 @@ variable "alb" {
   }))
 }
 
-# variable "sg" {
-#   type = map(object({
-#     vpc_id = string
-#     ingress = list(object({
-#       from_port = number
-#       to_port = number
-#       protocol = string
-#       cidr_blocks     = optional(list(string))
-#       security_groups = optional(list(string))
-#     }))
-#     egress = list(object({
-#       from_port = number
-#       to_port = number
-#       protocol = string
-#       cidr_blocks = list(string)
-#     }))
-#     tags = map(string)
-#   }))
+variable "ecr" {
+  type = map(object({
+    image_tag_mutability = string
+    tags = map(string)
+  }))
   
-# }
-
-
-
-
-
-
-
-
-
-
-# # variable "bastion" {
-# #   type = map(object({
-# #   }))
-  
-# # }
+}
