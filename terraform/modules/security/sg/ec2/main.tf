@@ -11,7 +11,7 @@ resource "aws_security_group" "ec2_sg" {
       cidr_blocks = lookup(ingress.value, "cidr_blocks", null)
 
       security_groups = ingress.value.security_groups != null ? [
-        for sg_name in ingress.value.security_groups : module.bastion_sg[sg_name].id
+        for sg_name in ingress.value.security_groups : module.bastion_sg[sg].id
       ] : null
     }
   }
