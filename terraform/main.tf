@@ -46,71 +46,71 @@ resource "aws_route_table_association" "public_assoc" {
   depends_on     = [module.route_table, module.subnets]
 }
 
-module "sg" {
-  source = "./modules/security/sg"
-  for_each = var.sg
-  name = each.key
-  settings = each.value
-  vpc_id = module.vpc[each.value.vpc_id].id
+# module "bastion_sg" {
+#   source = "./modules/security/sg/bastion"
+#   for_each = var.sg
+#   name = each.key
+#   settings = each.value
+#   vpc_id = module.vpc[each.value.vpc_id].id
   
-}
+# }
 
-module "bucket" {
-  source = "./modules/bucket"
-  for_each = var.bucket
-  name = each.key
-  settings = each.value
+# module "bucket" {
+#   source = "./modules/bucket"
+#   for_each = var.bucket
+#   name = each.key
+#   settings = each.value
   
-}
+# }
 
-# module "s3_policy" {
-#   source = "./modules/bucket/policy"
-#   for_each = var.s3_policy
+# # module "s3_policy" {
+# #   source = "./modules/bucket/policy"
+# #   for_each = var.s3_policy
+# #   bucket_arn = module.bucket[each.value.bucket].arn
+# #   bucket_id = module.bucket[each.value.bucket].id
+# #   terraform_role_arn = each.value.terraform_role_arn
+# #   vpc_endpoint_id = module.endpoint[each.value.endpoint].id
+
+  
+# # }
+
+# module "endpoint" {
+#   source = "./modules/networking/endpoint"
+#   for_each        = var.endpoint
+#   settings        = each.value
+#   vpc_id          = module.vpc[each.value.vpc_id].id
+#   region          = var.region
+#   route_table_ids = [for name in each.value.private_route_table : module.route_table[name].id]
+#   depends_on = [ module.vpc, module.bucket ]
+
+# }
+
+# module "iam" {
+#   source = "./modules/security/iam"
+#   for_each = var.iam
+#   name = each.key
 #   bucket_arn = module.bucket[each.value.bucket].arn
-#   bucket_id = module.bucket[each.value.bucket].id
-#   terraform_role_arn = each.value.terraform_role_arn
-#   vpc_endpoint_id = module.endpoint[each.value.endpoint].id
-
-  
 # }
 
-module "endpoint" {
-  source = "./modules/networking/endpoint"
-  for_each        = var.endpoint
-  settings        = each.value
-  vpc_id          = module.vpc[each.value.vpc_id].id
-  region          = var.region
-  route_table_ids = [for name in each.value.private_route_table : module.route_table[name].id]
-  depends_on = [ module.vpc, module.bucket ]
-
-}
-
-module "iam" {
-  source = "./modules/security/iam"
-  for_each = var.iam
-  name = each.key
-  bucket_arn = module.bucket[each.value.bucket].arn
-}
-
-# module "compute" {
-#   source = "./modules/compute"
-#   for_each = var.compute
-#   settings = each.value
-#   ami_id = data.aws_ami.ubuntu.id
-#   subnet_id = module.subnets[each.value.subnet_id].id
-#   vpc_security_group_ids = [for sg in each.value.security_group : module.sg[sg].id]
-#   instance_profile = module.iam[each.value.instance_profile_name].instance_profile_name
-#   depends_on = [ module.iam, module.vpc ]
+# # module "compute" {
+# #   source = "./modules/compute"
+# #   for_each = var.compute
+# #   settings = each.value
+# #   ami_id = data.aws_ami.ubuntu.id
+# #   subnet_id = module.subnets[each.value.subnet_id].id
+# #   vpc_security_group_ids = [for sg in each.value.security_group : module.sg[sg].id]
+# #   instance_profile = module.iam[each.value.instance_profile_name].instance_profile_name
+# #   depends_on = [ module.iam, module.vpc ]
   
-# }
+# # }
 
-# module "bastion" {
-#   source = "./modules/compute/bastion"
-#   for_each = var.bastion
-#   settings = each.value
-#   ami_id = data.aws_ami.ubuntu.id
-#   subnet_id = module.subnets[each.value.subnet_id].id
+# # module "bastion" {
+# #   source = "./modules/compute/bastion"
+# #   for_each = var.bastion
+# #   settings = each.value
+# #   ami_id = data.aws_ami.ubuntu.id
+# #   subnet_id = module.subnets[each.value.subnet_id].id
 
 
   
-# }
+# # }

@@ -91,110 +91,110 @@ rt_association = {
   }
 }
 
-sg = {
-  ec2_sg = {
-    vpc_id = "porsche_vpc"
-    ingress = [
-      {
-        cidr_blocks = ["0.0.0.0/0"]
-        from_port   = 80
-        protocol    = "tcp"
-        to_port     = 80
-      },
-      {
-        cidr_blocks = ["0.0.0.0/0"]
-        from_port   = 443
-        protocol    = "tcp"
-        to_port     = 443
-      },
-      {
-        from_port       = 22
-        to_port         = 22
-        protocol        = "tcp"
-        security_groups = ["bastion_sg"]
-      }
-    ]
-    egress = [
-      {
-        cidr_blocks = ["0.0.0.0/0"]
-        from_port   = 0
-        protocol    = "-1"
-        to_port     = 0
-      }
-    ]
-    tags = {
-      Name = "ec2_sg"
-    }
-  }
-  bastion_sg = {
-    vpc_id = "porsche_vpc"
-    ingress = [
-      {
-        cidr_blocks = ["93.138.253.37/32"]
-        from_port   = 22
-        protocol    = "tcp" 
-        to_port     = 22
-      }
-    ]
-    egress = [
-      {
-        cidr_blocks = ["0.0.0.0/0"]
-        from_port   = 0
-        protocol    = "-1"
-        to_port     = 0
-      }
-    ]
-    tags = {
-      Name = "bastion_sg"
-    }    
-  }
-}
-
-bucket = {
-  "porsche-bucket" = {
-    tags = {
-      Name = "porsche-bucket"
-    }
-    
-  }
-}
-
-endpoint = {
-  "s3_endpoint" = {
-    vpc_id = "porsche_vpc"
-    private_route_table = ["private"]
-    service_name = "com.amazonaws.eu-central-1.s3"
-    vpc_endpoint_type = "Gateway"
-    tags = {
-      Name = "s3_porsche_endpoint"
-    }
-    
-  }
-}
-# s3_policy = {
-#   "bucket_policy" = {
-#     bucket = "porsche-bucket"
-#     endpoint = "s3_endpoint"
-#     terraform_role_arn = "arn:aws:iam::339712870085:role/porsche_role_github"
-    
-#   }
-# }
-
-iam = {
-  "ec2_s3_access_role" = {
-    bucket = "porsche-bucket"
-    
-  }
-}
-
-# compute = {
-#   "porsche_ec2" = {
-#     instance_type = "t2.micro"
-#     subnet_id = "private_subnet"
-#     security_group = ["ec2_sg"] 
-#     instance_profile_name = "ec2_s3_access_role"
+# sg = {
+#   ec2_sg = {
+#     vpc_id = "porsche_vpc"
+#     ingress = [
+#       {
+#         cidr_blocks = ["0.0.0.0/0"]
+#         from_port   = 80
+#         protocol    = "tcp"
+#         to_port     = 80
+#       },
+#       {
+#         cidr_blocks = ["0.0.0.0/0"]
+#         from_port   = 443
+#         protocol    = "tcp"
+#         to_port     = 443
+#       },
+#       {
+#         from_port       = 22
+#         to_port         = 22
+#         protocol        = "tcp"
+#         security_groups = ["bastion_sg"]
+#       }
+#     ]
+#     egress = [
+#       {
+#         cidr_blocks = ["0.0.0.0/0"]
+#         from_port   = 0
+#         protocol    = "-1"
+#         to_port     = 0
+#       }
+#     ]
 #     tags = {
-#       Name = "porsche_ec2"
+#       Name = "ec2_sg"
 #     }
 #   }
+#   bastion_sg = {
+#     vpc_id = "porsche_vpc"
+#     ingress = [
+#       {
+#         cidr_blocks = ["93.138.253.37/32"]
+#         from_port   = 22
+#         protocol    = "tcp" 
+#         to_port     = 22
+#       }
+#     ]
+#     egress = [
+#       {
+#         cidr_blocks = ["0.0.0.0/0"]
+#         from_port   = 0
+#         protocol    = "-1"
+#         to_port     = 0
+#       }
+#     ]
+#     tags = {
+#       Name = "bastion_sg"
+#     }    
+#   }
 # }
+
+# bucket = {
+#   "porsche-bucket" = {
+#     tags = {
+#       Name = "porsche-bucket"
+#     }
+    
+#   }
+# }
+
+# endpoint = {
+#   "s3_endpoint" = {
+#     vpc_id = "porsche_vpc"
+#     private_route_table = ["private"]
+#     service_name = "com.amazonaws.eu-central-1.s3"
+#     vpc_endpoint_type = "Gateway"
+#     tags = {
+#       Name = "s3_porsche_endpoint"
+#     }
+    
+#   }
+# }
+# # s3_policy = {
+# #   "bucket_policy" = {
+# #     bucket = "porsche-bucket"
+# #     endpoint = "s3_endpoint"
+# #     terraform_role_arn = "arn:aws:iam::339712870085:role/porsche_role_github"
+    
+# #   }
+# # }
+
+# iam = {
+#   "ec2_s3_access_role" = {
+#     bucket = "porsche-bucket"
+    
+#   }
+# }
+
+# # compute = {
+# #   "porsche_ec2" = {
+# #     instance_type = "t2.micro"
+# #     subnet_id = "private_subnet"
+# #     security_group = ["ec2_sg"] 
+# #     instance_profile_name = "ec2_s3_access_role"
+# #     tags = {
+# #       Name = "porsche_ec2"
+# #     }
+# #   }
+# # }

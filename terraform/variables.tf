@@ -60,75 +60,75 @@ variable "rt_association" {
   }))
 }
 
-variable "sg" {
-  type = map(object({
-    vpc_id = string
-    ingress = list(object({
-      from_port = number
-      to_port = number
-      protocol = string
-      cidr_blocks     = optional(list(string))
-      security_groups = optional(list(string))
-    }))
-    egress = list(object({
-      from_port = number
-      to_port = number
-      protocol = string
-      cidr_blocks = list(string)
-    }))
-    tags = map(string)
-  }))
-  
-}
-
-variable "bucket" {
-  type = map(object({
-    tags = map(string)
-  }))
-  
-}
-
-variable "endpoint" {
-  type = map(object({
-    vpc_id = string
-    private_route_table = list(string)
-    service_name = string
-    vpc_endpoint_type = string
-    tags = map(string)
-
-  }))
-  
-}
-
-# variable "s3_policy" {
+# variable "sg" {
 #   type = map(object({
-#     bucket = string
-#     endpoint = string
-#     terraform_role_arn = string 
-#   }))
-  
-# }
-variable "iam" {
-  type = map(object({
-    bucket = string
-
-  }))
-  
-}
-
-# variable "compute" {
-#   type = map(object({
-#     instance_type = string
-#     subnet_id = string
-#     security_group = list(string)
-#     instance_profile_name = string
+#     vpc_id = string
+#     ingress = list(object({
+#       from_port = number
+#       to_port = number
+#       protocol = string
+#       cidr_blocks     = optional(list(string))
+#       security_groups = optional(list(string))
+#     }))
+#     egress = list(object({
+#       from_port = number
+#       to_port = number
+#       protocol = string
+#       cidr_blocks = list(string)
+#     }))
 #     tags = map(string)
 #   }))
   
 # }
 
-# variable "bastion" {
+# variable "bucket" {
 #   type = map(object({
+#     tags = map(string)
 #   }))
   
 # }
+
+# variable "endpoint" {
+#   type = map(object({
+#     vpc_id = string
+#     private_route_table = list(string)
+#     service_name = string
+#     vpc_endpoint_type = string
+#     tags = map(string)
+
+#   }))
+  
+# }
+
+# # variable "s3_policy" {
+# #   type = map(object({
+# #     bucket = string
+# #     endpoint = string
+# #     terraform_role_arn = string 
+# #   }))
+  
+# # }
+# variable "iam" {
+#   type = map(object({
+#     bucket = string
+
+#   }))
+  
+# }
+
+# # variable "compute" {
+# #   type = map(object({
+# #     instance_type = string
+# #     subnet_id = string
+# #     security_group = list(string)
+# #     instance_profile_name = string
+# #     tags = map(string)
+# #   }))
+  
+# # }
+
+# # variable "bastion" {
+# #   type = map(object({
+# #   }))
+  
+# # }
