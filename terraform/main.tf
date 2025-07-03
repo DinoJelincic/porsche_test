@@ -98,7 +98,7 @@ module "compute" {
   settings = each.value
   ami_id = data.aws_ami.ubuntu.id
   subnet_id = module.subnets[each.value.subnet_id].id
-  vpc_security_group_ids = module.sg[each.value.security_group].id
+  vpc_security_group_ids = [module.sg[each.value.security_group].id]
   instance_profile = module.iam[each.value.instance_profile].instance_profile_id
   depends_on = [ module.iam, module.vpc ]
   
