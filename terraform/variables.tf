@@ -153,14 +153,15 @@ variable "ec2" {
   
 }
 
-# variable "s3_policy" {
-#   type = map(object({
-#     bucket = string
-#     endpoint = string
-#     terraform_role_arn = string 
-#   }))
+variable "s3_policy" {
+  type = map(object({
+    bucket = string
+    endpoint = string
+    terraform_role_arn = string
+    iam = string 
+  }))
   
-# }
+}
 
 # variable "sg" {
 #   type = map(object({

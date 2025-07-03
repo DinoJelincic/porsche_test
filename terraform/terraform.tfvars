@@ -194,14 +194,16 @@ ec2 = {
   }
 }
 
-# s3_policy = {
-#   "bucket_policy" = {
-#     bucket = "porsche-bucket"
-#     endpoint = "s3_endpoint"
-#     terraform_role_arn = "arn:aws:iam::339712870085:role/porsche_role_github"
+s3_policy = {
+  "bucket_policy" = {
+    bucket = "porsche-bucket"
+    endpoint = "s3_endpoint"
+    terraform_role_arn = "arn:aws:iam::339712870085:role/porsche_role_github"
+    iam = "ec2_s3_access_role"
+
     
-#   }
-# }
+  }
+}
 
 
 # sg = {
