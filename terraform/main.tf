@@ -69,5 +69,5 @@ module "endpoint" {
   settings        = each.value
   vpc_id          = module.vpc[each.value.vpc_id].id
   region          = var.region
-  route_table_ids = module.route_table[each.value.private_route_table].id
+  route_table_ids = [module.route_table[each.value.private_route_table].id]
 }

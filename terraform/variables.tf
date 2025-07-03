@@ -90,7 +90,7 @@ variable "bucket" {
 variable "endpoint" {
   type = map(object({
     vpc_id = string
-    private_route_table = string
+    private_route_table = list(string)
     service_name = string
     vpc_endpoint_type = string
     tags = map(string)
