@@ -270,7 +270,7 @@ alb = {
 
 ecr = {
   "porsche_ecr" = {
-    image_tag_mutabilitiy = "MUTABLE"
+    image_tag_mutability = "MUTABLE"
     tags = {
       Name = "porsche_ecr"
     }
