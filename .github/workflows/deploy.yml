@@ -33,4 +33,3 @@ jobs:
           cd terraform
           terraform init
           terraform apply -auto-approve -var="bastion_public_key=$BASTION_PUBLIC_KEY"
-
