@@ -67,6 +67,16 @@ module "bastion" {
   depends_on = [ module.vpc ]
 }
 
+module "ec2_sg" {
+  source = "./modules/security/sg/ec2"
+  for_each = var.ec2_sg
+  name = each.key
+  settings = each.value
+  vpc_id = module.vpc[each.value.vpc_id].id
+  depends_on = [ module.vpc ]
+  
+}
+
 # module "bucket" {
 #   source = "./modules/bucket"
 #   for_each = var.bucket
