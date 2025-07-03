@@ -148,7 +148,7 @@ ec2_sg = {
         from_port       = 22
         to_port         = 22
         protocol        = "tcp"
-        security_groups = ["sg-04e5e38e9fa0bee3e"]
+        security_groups = ["sg-0e0b2f1bbf0ffaa75"]
       }
     ]
     egress = [
