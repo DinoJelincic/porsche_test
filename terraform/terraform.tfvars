@@ -138,7 +138,7 @@ bastion_sg = {
       }
     ]
     tags = {
-      Name = "ec2_sg"
+      Name = "alb_sg"
     }
   }      
 }
