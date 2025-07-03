@@ -115,13 +115,13 @@ variable "iam" {
   
 }
 
-# variable "compute" {
-#   type = map(object({
-#     instance_type = string
-#     subnet_id = string
-#     security_group = list(string)
-#     #instance_profile = string
-#     tags = map(string)
-#   }))
+variable "compute" {
+  type = map(object({
+    instance_type = string
+    subnet_id = string
+    security_group = list(string)
+    #instance_profile = string
+    tags = map(string)
+  }))
   
-# }
+}
