@@ -102,7 +102,8 @@ variable "endpoint" {
 variable "s3_policy" {
   type = map(object({
     bucket = string
-    endpoint = string 
+    endpoint = string
+    terraform_role_arn = string 
   }))
   
 }
