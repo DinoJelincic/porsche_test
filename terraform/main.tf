@@ -63,16 +63,16 @@ module "bucket" {
   
 }
 
-module "s3_policy" {
-  source = "./modules/bucket/policy"
-  for_each = var.s3_policy
-  bucket_arn = module.bucket[each.value.bucket].arn
-  bucket_id = module.bucket[each.value.bucket].id
-  terraform_role_arn = each.value.terraform_role_arn
-  vpc_endpoint_id = module.endpoint[each.value.endpoint].id
+# module "s3_policy" {
+#   source = "./modules/bucket/policy"
+#   for_each = var.s3_policy
+#   bucket_arn = module.bucket[each.value.bucket].arn
+#   bucket_id = module.bucket[each.value.bucket].id
+#   terraform_role_arn = each.value.terraform_role_arn
+#   vpc_endpoint_id = module.endpoint[each.value.endpoint].id
 
   
-}
+# }
 
 module "endpoint" {
   source = "./modules/networking/endpoint"
