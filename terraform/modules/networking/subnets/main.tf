@@ -3,5 +3,5 @@ resource "aws_subnet" "subnet" {
   cidr_block              = var.settings.cidr_block
   map_public_ip_on_launch = var.settings.map_public_ip_on_launch
   tags                    = var.settings.tags
-  availability_zone       = var.settings.aws_availability_zone
+  availability_zone       = var.settings.availability_zone
 }
