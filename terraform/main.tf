@@ -110,7 +110,7 @@ module "compute" {
   settings = each.value
   ami_id = data.aws_ami.ubuntu.id
   subnet_id = module.subnets[each.value.subnet_id].id
-  vpc_security_group_ids = [for sg in each.value.security_group : module.sg[sg].id]
+  vpc_security_group_ids = [for sg in each.value.security_group : module.ec2_sg[sg].id]
   instance_profile = module.iam[each.value.instance_profile_name].instance_profile_name
   ec2_public_key = var.ec2_public_key
   depends_on = [ module.iam, module.vpc ]
