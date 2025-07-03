@@ -254,16 +254,16 @@ s3_policy = {
   }
 }
 
-# alb = {
-#   "porsche-alb" = {
-#     vpc = "porsche_vpc"
-#     public_subnet = "public_subnet"
-#     security_group = ["alb_sg"]
-#     tags = {
-#       Name = "porsche-alb"
-#     }
-#   }
-# }
+alb = {
+  "porsche-alb" = {
+    vpc = "porsche_vpc"
+    public_subnet = "public_subnet"
+    security_group = ["alb_sg"]
+    tags = {
+      Name = "porsche-alb"
+    }
+  }
+}
 
 
 # sg = {
