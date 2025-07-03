@@ -46,14 +46,14 @@ resource "aws_route_table_association" "public_assoc" {
   depends_on     = [module.route_table, module.subnets]
 }
 
-# module "bastion_sg" {
-#   source = "./modules/security/sg/bastion"
-#   for_each = var.sg
-#   name = each.key
-#   settings = each.value
-#   vpc_id = module.vpc[each.value.vpc_id].id
+module "bastion_sg" {
+  source = "./modules/security/sg/bastion"
+  for_each = var.bastion_sg
+  name = each.key
+  settings = each.value
+  vpc_id = module.vpc[each.value.vpc_id].id
   
-# }
+}
 
 # module "bucket" {
 #   source = "./modules/bucket"

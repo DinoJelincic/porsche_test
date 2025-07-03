@@ -60,6 +60,25 @@ variable "rt_association" {
   }))
 }
 
+variable "bastion_sg" {
+  type = map(object({
+    vpc_id = string
+    ingress = list(object({
+      from_port = number
+      to_port = number
+      protocol = string
+      cidr_blocks = list(string)
+    }))
+    egress = list(object({
+      from_port = number
+      to_port = number
+      protocol = string
+      cidr_blocks = list(string)
+    }))
+    tags = map(string)
+  }))  
+}
+
 # variable "sg" {
 #   type = map(object({
 #     vpc_id = string
