@@ -79,6 +79,16 @@ variable "bastion_sg" {
   }))  
 }
 
+variable "bastion" {
+  type = map(object({
+    instance_type = string
+    subnet_id = string
+    security_group = list(string)
+    tags = map(string)
+  }))
+  
+}
+
 # variable "sg" {
 #   type = map(object({
 #     vpc_id = string

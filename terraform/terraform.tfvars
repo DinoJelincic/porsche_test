@@ -117,6 +117,17 @@ bastion_sg = {
 }
 
 
+bastion = {
+  "porsche_ec2" = {
+    instance_type = "t2.micro"
+    subnet_id = "public_subnet"
+    security_group = ["bastion_sg"] 
+    tags = {
+      Name = "porsche_bastion"
+    }
+  }
+}
+
 # sg = {
 #   ec2_sg = {
 #     vpc_id = "porsche_vpc"

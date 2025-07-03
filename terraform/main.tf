@@ -52,7 +52,18 @@ module "bastion_sg" {
   name = each.key
   settings = each.value
   vpc_id = module.vpc[each.value.vpc_id].id
+  depends_on = [ module.vpc ]
   
+}
+
+module "bastion" {
+  source = "./modules/compute/bastion"
+  for_each = var.bastion
+  settings = each.value
+  ami_id = data.aws_ami.ubuntu.id
+  subnet_id = module.subnets[each.value.subnet_id].id
+  vpc_security_group_ids = [for sg in each.value.security_group : module.bastion_sg[sg].id]
+  depends_on = [ module.vpc ]
 }
 
 # module "bucket" {
