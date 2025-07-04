@@ -66,3 +66,28 @@ jobs:
           terraform apply -auto-approve \
             -var="bastion_public_key=$BASTION_PUBLIC_KEY" \
             -var="ec2_public_key=$EC2_PUBLIC_KEY"
+
+      - name: Setup SSH keys
+        if: steps.file_check.outputs.changed == 'true'
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.BASTION_PRIVATE_KEY }}" > ~/.ssh/bastion_key
+          echo "${{ secrets.EC2_PRIVATE_KEY }}" > ~/.ssh/ec2_key
+          chmod 600 ~/.ssh/bastion_key ~/.ssh/ec2_key
+
+      - name: Add bastion to known_hosts
+        if: steps.file_check.outputs.changed == 'true'
+        run: ssh-keyscan -H 18.157.157.171 >> ~/.ssh/known_hosts
+
+      - name: Add private EC2 to known_hosts
+        if: steps.file_check.outputs.changed == 'true'
+        run: ssh-keyscan -H 10.10.100.63 >> ~/.ssh/known_hosts
+
+      - name: Deploy to private EC2 via bastion
+        if: steps.file_check.outputs.changed == 'true'
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/ec2_key -J ubuntu@18.157.157.171 ubuntu@10.10.100.63 << 'EOF'
+            echo "Deploy nove verzije"
+            docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+            docker-compose -f /home/ubuntu/porsche up -d
+          EOF
