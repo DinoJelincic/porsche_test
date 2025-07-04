@@ -2,7 +2,7 @@ name: Deploy to AWS
 
 on:
   workflow_dispatch:
-
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -23,30 +23,46 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Terraform
-        uses: hashicorp/setup-terraform@v2
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          terraform_version: 1.5.6
+          python-version: '3.10'
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-region: ${{ env.AWS_REGION }}
-          role-to-assume: ${{ secrets.AWS_ROLE }}
-          role-session-name: GitHubActionsSession
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Run ruff linter
+        run: ruff app/
+
+      - name: Check if app.py was modified
+        id: file_check
+        run: |
+          # Dohvati promjene u commitu
+          git fetch origin main --depth=1
+          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+          echo "Changed files: $CHANGED_FILES"
+          if echo "$CHANGED_FILES" | grep -q "^app/app.py$"; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Login to Amazon ECR
+        if: steps.file_check.outputs.changed == 'true'
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build Docker image
+        if: steps.file_check.outputs.changed == 'true'
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./app
 
       - name: Push Docker image to ECR
+        if: steps.file_check.outputs.changed == 'true'
         run: |
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: Run Terraform
+        if: steps.file_check.outputs.changed == 'true'
         run: |
           cd terraform
           terraform init
