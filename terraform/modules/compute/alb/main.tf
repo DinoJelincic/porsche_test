@@ -53,5 +53,5 @@ resource "aws_lb_listener" "https" {
 resource "aws_lb_target_group_attachment" "app" {
   target_group_arn = aws_lb_target_group.tg.arn
   target_id        = var.target_instance_id
-  port             = 80
+  port             = 5000
 }
