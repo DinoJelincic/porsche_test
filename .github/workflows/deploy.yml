@@ -13,7 +13,9 @@ jobs:
     env:
       BASTION_PUBLIC_KEY: ${{ secrets.BASTION_PUBLIC_KEY }}
       EC2_PUBLIC_KEY: ${{ secrets.EC2_PUBLIC_KEY }}
-      IMAGE_TAG: latest
+      BASTION_PRIVATE_KEY: ${{ secrets.BASTION_PRIVATE_KEY }}
+      EC2_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+      IMAGE_TAG: ${{ github.sha }}
       AWS_REGION: eu-central-1
       AWS_ROLE: ${{ secrets.AWS_ROLE }} 
       ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }} 
@@ -87,7 +89,11 @@ jobs:
         if: steps.file_check.outputs.changed == 'true'
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/ec2_key -J ubuntu@18.157.157.171 ubuntu@10.10.100.63 << 'EOF'
-            echo "Deploy nove verzije"
-            docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-            docker-compose -f /home/ubuntu/porsche up -d
+            echo "Login to ECR"
+            aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 339712870085.dkr.ecr.eu-central-1.amazonaws.com
+            echo "Update .env with new IMAGE_TAG"
+            echo "IMAGE_TAG=$IMAGE_TAG" > /home/ubuntu/porsche/.env
+            cd /home/ubuntu/porsche
+            docker-compose pull
+            docker-compose up -d
           EOF
