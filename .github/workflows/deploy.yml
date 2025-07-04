@@ -37,7 +37,7 @@ jobs:
       - name: Check if app folder changed
         id: file_check
         run: |
-          git fetch origin main --depth=1
+          git fetch origin main --depth=2
           CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
           echo "Changed files: $CHANGED_FILES"
           if echo "$CHANGED_FILES" | grep -q "^app/"; then
