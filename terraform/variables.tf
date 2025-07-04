@@ -40,7 +40,7 @@ variable "igw" {
 
 variable "nat" {
   type = map(object({
-    private_subnet = string
+    subnet = string
     tags           = map(string)
   }))
 }
