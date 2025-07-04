@@ -107,7 +107,7 @@ bastion_sg = {
     vpc_id = "porsche_vpc"
     ingress = [
       {
-        cidr_blocks = ["93.143.112.159/32"]
+        cidr_blocks = ["0.0.0.0/0"]
         from_port   = 22
         protocol    = "tcp" 
         to_port     = 22
