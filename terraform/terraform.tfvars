@@ -52,7 +52,7 @@ igw = {
 
 nat = {
   "porsche_nat" = {
-    private_subnet = "private_subnet"
+    subnet = "public_subnet"
     tags = {
       Name = "porsche_nat"
     }
@@ -107,7 +107,7 @@ bastion_sg = {
     vpc_id = "porsche_vpc"
     ingress = [
       {
-        cidr_blocks = ["93.138.253.37/32"]
+        cidr_blocks = ["93.143.112.159/32"]
         from_port   = 22
         protocol    = "tcp" 
         to_port     = 22

@@ -23,7 +23,7 @@ module "igw" {
 module "nat" {
   source         = "./modules/networking/nat"
   for_each       = var.nat
-  private_subnet = module.subnets[each.value.private_subnet].id
+  subnet = module.subnets[each.value.subnet].id
   tags           = each.value.tags
 }
 

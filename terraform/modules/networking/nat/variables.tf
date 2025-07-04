@@ -1,4 +1,4 @@
-variable "private_subnet" {
+variable "subnet" {
 
 }
 variable "tags" {
