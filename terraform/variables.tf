@@ -168,7 +168,9 @@ variable "alb" {
     vpc = string 
     public_subnet = list(string)
     security_group = list(string)
+    ec2 = string
     tags = map(string)
+
   }))
 }
 
