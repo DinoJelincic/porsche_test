@@ -13,7 +13,7 @@ jobs:
     env:
       BASTION_PUBLIC_KEY: ${{ secrets.BASTION_PUBLIC_KEY }}
       EC2_PUBLIC_KEY: ${{ secrets.EC2_PUBLIC_KEY }}
-      IMAGE_TAG: ${{ github.sha }}
+      IMAGE_TAG: latest
       AWS_REGION: eu-central-1
       AWS_ROLE: ${{ secrets.AWS_ROLE }} 
       ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }} 
