@@ -89,21 +89,34 @@ jobs:
           echo "${{ secrets.EC2_PRIVATE_KEY }}" > ~/.ssh/ec2_key
           chmod 600 ~/.ssh/bastion_key ~/.ssh/ec2_key
 
-      - name: Add bastion to known_hosts
+      - name: Configure SSH config
         if: steps.file_check.outputs.changed == 'true'
-        run: ssh-keyscan -H 18.157.157.171 >> ~/.ssh/known_hosts
+        run: |
+          echo "
+          Host bastion
+              HostName 18.157.157.171
+              User ubuntu
+              IdentityFile ~/.ssh/bastion_key
+              StrictHostKeyChecking no
 
-      - name: Add private EC2 to known_hosts
+          Host private-ec2
+              HostName 10.10.100.63
+              User ubuntu
+              IdentityFile ~/.ssh/ec2_key
+              ProxyJump bastion
+              StrictHostKeyChecking no
+          " >> ~/.ssh/config
+
+      - name: Warm up private EC2 connection via bastion
         if: steps.file_check.outputs.changed == 'true'
-        run: ssh-keyscan -H 10.10.100.63 >> ~/.ssh/known_hosts
+        run: ssh private-ec2 exit
 
       - name: Deploy to private EC2 via bastion
         if: steps.file_check.outputs.changed == 'true'
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/ec2_key -J ubuntu@18.157.157.171 ubuntu@10.10.100.63 << 'EOF'
+          ssh private-ec2 << EOF
             echo "Login to ECR"
-            aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 339712870085.dkr.ecr.eu-central-1.amazonaws.com
-            echo "Update .env with new IMAGE_TAG"
+            aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
             echo "IMAGE_TAG=$IMAGE_TAG" > /home/ubuntu/porsche/.env
             cd /home/ubuntu/porsche
             docker-compose pull
