@@ -171,6 +171,12 @@ ec2_sg = {
     vpc_id = "porsche_vpc"
     ingress = [
       {
+        from_port   = 80
+        protocol    = "tcp"
+        to_port     = 80
+        security_groups = ["sg-05fdf2d24867e1eaf"]
+      },
+      {
         from_port       = 22
         to_port         = 22
         protocol        = "tcp"
