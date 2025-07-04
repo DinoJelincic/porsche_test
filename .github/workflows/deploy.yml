@@ -119,6 +119,8 @@ jobs:
             aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
             echo "IMAGE_TAG=$IMAGE_TAG" > /home/ubuntu/porsche/.env
             cd /home/ubuntu/porsche
+            docker-compose down
+            docker rmi -f $(docker images -q)
             docker-compose pull
             docker-compose up -d
           EOF

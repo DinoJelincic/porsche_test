@@ -24,6 +24,5 @@ def hello_world():
     <img src="{image_url}" alt="S3 Image" style="max-width:100%; height:auto;">
     """
 
-
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
