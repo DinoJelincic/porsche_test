@@ -10,7 +10,6 @@ S3_BUCKET_NAME = environ["S3_BUCKET_NAME"]
 IMAGE_KEY = "example.jpg"
 S3_CLIENT = boto3.client("s3", region_name=AWS_REGION)
 
-
 @app.route("/")
 def hello_world():
     image_url = S3_CLIENT.generate_presigned_url(
