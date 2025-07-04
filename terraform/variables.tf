@@ -163,16 +163,16 @@ variable "s3_policy" {
   }))
   
 }
-variable "alb" {
-  type = map(object({
-    vpc = string 
-    public_subnet = list(string)
-    security_group = list(string)
-    ec2 = string
-    tags = map(string)
+# variable "alb" {
+#   type = map(object({
+#     vpc = string 
+#     public_subnet = list(string)
+#     security_group = list(string)
+#     ec2 = string
+#     tags = map(string)
 
-  }))
-}
+#   }))
+# }
 
 variable "ecr" {
   type = map(object({

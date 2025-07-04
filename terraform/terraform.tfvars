@@ -24,7 +24,7 @@ subnets = {
 "public2_subnet" = {
     vpc_id                  = "porsche_vpc"
     map_public_ip_on_launch = true
-    availability_zone       = "eu-central-1c"
+    availability_zone       = "eu-central-1b"
     cidr_block              = "10.10.10.0/24"
     tags = {
       Name = "public2_subnet"
@@ -243,17 +243,17 @@ s3_policy = {
   }
 }
 
-alb = {
-  "porsche-alb" = {
-    vpc = "porsche_vpc"
-    public_subnet = ["public_subnet", "public2_subnet"]
-    security_group = ["alb_sg"]
-    ec2 = "porsche_ec2"
-    tags = {
-      Name = "porsche-alb"
-    }
-  }
-}
+# alb = {
+#   "porsche-alb" = {
+#     vpc = "porsche_vpc"
+#     public_subnet = ["public_subnet", "public2_subnet"]
+#     security_group = ["alb_sg"]
+#     ec2 = "porsche_ec2"
+#     tags = {
+#       Name = "porsche-alb"
+#     }
+#   }
+# }
 
 ecr = {
   "porsche_ecr" = {
