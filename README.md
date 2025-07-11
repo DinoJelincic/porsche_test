@@ -28,4 +28,13 @@ Right now access to Bastion host is allowed to anyone, for testing purposes, lat
 
 Application load balancer is used to publish application on https://porsche.odinops.solutions
 
-P.S please waith 30 secound for application to loadin, thank you! :)
+Github Actions are used for CI/CD automation. OIDC (OpenID Connect) is used to authenticate GitHub and AWS for secure and temporary credentials.
+Workflow is configured to:
+- Python linter to check the code quailty
+- build and push Docker image to ECR
+- deploy application on EC2 instance
+- provide entire infrastructure using Terraform
+
+All sensitive data is stored in GitHub Secrets
+
+P.S please wait 30 secound for application to load in, thank you! :)
