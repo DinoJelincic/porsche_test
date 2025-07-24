@@ -78,7 +78,7 @@ jobs:
         run: |
           cd terraform
           terraform init
-          terraform apply -auto-approve \
+          terraform destroy -auto-approve \
             -var="bastion_public_key=$BASTION_PUBLIC_KEY" \
             -var="ec2_public_key=$EC2_PUBLIC_KEY"
 
