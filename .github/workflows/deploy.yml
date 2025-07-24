@@ -37,17 +37,7 @@ jobs:
       - name: Run ruff linter
         run: ruff app/
 
-      - name: Check if app folder changed
-        id: file_check
-        run: |
-          git fetch origin main --depth=2
-          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
-          echo "Changed files: $CHANGED_FILES"
-          if echo "$CHANGED_FILES" | grep -q "^app/"; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "changed=false" >> $GITHUB_OUTPUT
-          fi
+
 
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
